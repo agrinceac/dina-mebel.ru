@@ -1,0 +1,222 @@
+.main-heading {
+   font-size: 24px;
+   font-weight: normal;
+   color: #333;
+   padding-top: 6px;
+   padding-bottom: 41px;
+   text-align: center;
+}
+.category-playgrounds img {
+   float: left; 
+}
+.category-playgrounds .category-playgrounds-title {
+    background: url(/images/bg-home/playground-title.png) no-repeat top left;
+    width: 251px;
+    height: 44px;
+    display: block;
+    margin-left: 72px;
+    padding-top: 12px;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 0px 0px 57px;
+    text-shadow: 0px 2px 5px #65a52d;
+    margin-top: 49px;
+    float: left;
+}
+.category-playgrounds .category-playgrounds-title:hover {
+    text-decoration: underline;
+}
+.category-playgrounds ul {
+    float: left;
+    margin-left: 133px;
+    margin-top: 22px;
+}
+.category-playgrounds ul li {
+    background: url(/images/bg-home/pointer.png) no-repeat center left;
+    padding-left: 17px;
+    margin-bottom: 15px;
+    
+}
+.category-playgrounds ul li a {
+    font-size: 16px;
+}
+.category-playgrounds-city img {
+   float: right; 
+   margin-top: 21px;
+}
+.category-playgrounds-city .category-playgrounds-city-title {
+    background: url(/images/bg-home/playground-city-title.png) no-repeat top left;
+    width: 257px;
+    height: 44px;
+    display: block;
+    margin-left: 0px;
+    padding-top: 12px;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 0px 0px 57px;
+    text-shadow: 0px 2px 5px #ba641f;
+    margin-top: 64px;
+    float: left;
+}
+.category-playgrounds-city .category-playgrounds-city-title:hover {
+    text-decoration: underline;
+}
+.category-playgrounds-city ul {
+    float: left;
+    margin-left: 58px;
+    margin-top: 22px;
+}
+.category-playgrounds-city ul li {
+    background: url(/images/bg-home/pointer.png) no-repeat center left;
+    padding-left: 17px;
+    margin-bottom: 15px;
+    
+}
+.category-playgrounds-city ul li a {
+    font-size: 16px;
+}
+.border {
+    width: 95%;
+    height: 1px;
+    background-color: #dfdfdf;
+    
+}
+.seesaw img {
+    margin: 10px 0px 0px 83px;
+    float: left;
+}
+.seesaw .seesaw-title {
+    float: left;
+    margin-top: 91px;
+    margin-left: 35px;
+    font-size: 47px;
+    color: #339933;
+    text-decoration: none;
+}
+.seesaw .seesaw-title:hover {
+    color: #eb8004;
+}
+.children-slide {
+    float: left;
+    width: 248px;
+    text-align: center; 
+}
+.children-slide .children-slide-title {
+    display: block;
+    color: #f88529;
+    font-size: 24px;
+    text-decoration: none;
+    padding-top: 24px;
+    padding-bottom: 10px;
+}
+.children-slide .children-slide-title:hover {
+    color: #339933;
+}
+.sandbox {
+    float: left;
+    width: 251px;
+    text-align: center; 
+}
+.sandbox .sandbox-title {
+    display: block;
+    color: #f88529;
+    font-size: 24px;
+    text-decoration: none;
+    padding-top: 22px;
+    padding-bottom: 10px;
+}
+.sandbox .sandbox-title:hover {
+    color: #339933;
+}
+.playhouse {
+    float: left;
+    width: 231px;
+    padding-top: 10px;
+    text-align: center; 
+}
+.playhouse .playhouse-title {
+    display: block;
+    color: #f88529;
+    font-size: 24px;
+    text-decoration: none;
+    padding-top: 12px;
+    padding-bottom: 10px;
+}
+.playhouse .playhouse-title:hover {
+    color: #339933;
+}
+.border-vertical {
+    width: 1px;
+    height: 180px;
+    margin-top:20px;
+    background-color: #dfdfdf;
+    float: left;
+}
+.delivery-home {
+    float: left;
+    width: 37%;
+    padding-top: 55px;
+    padding-left: 13%;
+    background: url(/images/bg-home/delivery.png) no-repeat 14px 54px;
+    padding-bottom: 63px;
+    
+}
+.delivery-home h2 {
+    font-size: 28px;
+    color: #333333;
+    display: block;
+    padding-bottom: 20px;
+}
+.delivery-home p {
+    font-size: 14px;
+    color: #333;
+    line-height: 18px;
+    padding-right: 28px;
+}
+.delivery-home a {
+    display: block;
+    padding-top: 10px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 46px;
+    text-decoration: none;
+}
+.delivery-home a span {
+    text-decoration: underline;
+}
+.purse-home {
+    float: left;
+    width: 37%;
+    padding-top: 55px;
+    padding-left: 13%;
+    background: url(/images/bg-home/purse.png) no-repeat 14px 54px;
+    padding-bottom: 63px;
+    
+}
+.purse-home h2 {
+    font-size: 28px;
+    color: #333333;
+    display: block;
+    padding-bottom: 20px;
+}
+.purse-home p {
+    font-size: 14px;
+    color: #333;
+    line-height: 18px;
+    padding-right: 28px;
+}
+.purse-home a {
+    display: block;
+    padding-top: 10px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 46px;
+    text-decoration: none;
+}
+.purse-home a span {
+    text-decoration: underline;
+}

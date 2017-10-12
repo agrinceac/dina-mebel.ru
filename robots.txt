@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Crawl-delay: 1
+Host: dina-mebel.ru
