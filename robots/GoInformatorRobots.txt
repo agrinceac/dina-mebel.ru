@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Crawl-delay: 1
+Host: dia-mebel.ru
+Sitemap: http://dia-mebel.ru/sitemap.xml

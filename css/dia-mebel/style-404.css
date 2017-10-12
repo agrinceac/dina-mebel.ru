@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+/* CSS Document */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html, body {width:100%; height:100%; margin:0; }
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-style: normal;
+	color:#333333;
+	background:#fff;
+        
+
+}
+
+.clear { clear:both;}
+.main {
+    background: url(/images/error/bg_main.png) repeat-x bottom;
+}
+.main-right {
+    width: 100%;
+    min-height: 100%;
+    background: url(/images/error/tree-right.jpg) no-repeat left bottom;
+}
+.main-left {
+    width: 100%;
+    min-width: 980px;
+    background: url(/images/error/tree-left.jpg) no-repeat right bottom;
+}
+.main-center {
+    width: 558px;
+    background: url(/images/error/bg-transparanted.png) repeat;
+    margin: 0px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+}
+.logo-and-name {
+    display: block;
+    width: 473px;
+    height: 128px;
+    margin: 0px auto 45px auto;
+    background: url(/images/error/logo-and-name.png) no-repeat;
+}
+.error {
+    background: url(/images/error/error.png) no-repeat;
+    width: 473px;
+    height: 85px;
+    margin: 0px auto 10px auto;
+}
+.text-error {
+    color: #5c5757;
+    text-align: center;
+}
+.text-error h1 {
+    font-size: 23px;
+    display: block;
+    margin: 0px auto;
+}
+.text-error p {
+    font-size: 14px;
+    display: block;
+    margin: 10px auto;
+    line-height: 18px;
+}
+.text-error a {
+    font-size: 14px;
+    color: #2973c6;
+}
+.produce {
+    width: 473px;
+    height: 80px;
+    margin: 20px auto;
+    background: url(/images/error/produce.png) no-repeat;
+}
+.list-goods {
+    width: 91%;
+    margin: 0px auto;
+}
+.list-goods li {
+    display: list-item;
+    width: 50%;
+    list-style: none;
+    float: left;
+    height: 68px;
+}
+.list-goods li img {
+    margin-right: 10px;
+}
+.list-goods li  a {
+    padding: 9px 0px 0px 0px;
+    display: block;
+    color: #333333;
+    font-size: 17px;
+    text-decoration: none;
+}
+.list-goods li  a:hover {
+    text-decoration: underline;
+    color: rgb(61, 129, 17);
+}
