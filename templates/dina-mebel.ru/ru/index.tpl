@@ -5,7 +5,7 @@
 				<?=$this->getController('Catalog')->getSlyderBlock()?>
 
 				<div class="pre_catalog">
-					<p class="title">Каталог товаров.</p>
+					<p class="title">Каталог товаров</p>
 
 					<div class="cat_item f_left" style="background-image:url(/images/del/01.jpg)">
 						<div class="caption">
