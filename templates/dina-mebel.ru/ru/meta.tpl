@@ -12,6 +12,9 @@
 	<title><?=$this->getMetaTitle();?></title>
 	<meta name="description" content="<?=$this->getMetaDescription();?>" />
 	<meta name="keywords" content="<?=$this->getMetaKeywords();?>" />
+
+    <meta name="yandex-verification" content="aa5a0872714a42b4" />
+
 	<!-- End: Meta Information -->
 
 	<!-- Start: CSS files -->
