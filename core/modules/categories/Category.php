@@ -18,7 +18,8 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 	/* Start: Meta Methods */
 	public function getMetaTitle()
 	{
-		return $this->metaTitle;
+	    return $this->getH1();
+//		return $this->metaTitle;
 	}
 
 	public function getMetaDescription()
