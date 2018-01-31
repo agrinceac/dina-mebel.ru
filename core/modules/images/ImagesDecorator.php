@@ -33,9 +33,16 @@ class ImagesDecorator extends \core\modules\base\ModuleDecorator
 
 	protected function getImagesByCategoryAndStatus($categories, $statuses)
 	{
-		$images = $this->getImagesByCategory($categories);
+        $images = new Images($this->getParentObject());
+        $categories = (is_array($categories)) ? implode(',',$categories) : (int)$categories;
+        $images->setSubquery(' AND `objectId` = ?d AND `categoryId` IN (?s)',$this->getParentObject()->id,$categories);
+
 		$statuses = (is_array($statuses)) ? implode(',',$statuses) : (int)$statuses;
-		$images->setSubquery(' AND `statusId` = ?d', $statuses);
+		if(is_string($statuses))
+            $images->setSubquery(' AND `statusId` IN (?s)', $statuses);
+        if(is_int($statuses))
+		    $images->setSubquery(' AND `statusId` = ?d', $statuses);
+
 		return $images;
 	}
 

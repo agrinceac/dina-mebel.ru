@@ -2,7 +2,7 @@
 		<?if( $object->getImagesByCategory($item->id)->current() ): ?>
 			<p><b><?=$item->name?></b></p>
 		<?endif?>
-		    <? foreach ( $object->getImagesByCategory($item->id) as $image ): ?>
+		    <? foreach ( $object->getImagesByCategoryAndStatus($item->id, array(1,2,3,4,5,6)) as $image ): ?>
 		    <div id="image<?=$image->id?>" class="image active">
 			    <div class="fileHeader hide editImage"
 				    data-action="/admin/<?=$_REQUEST['controller']?>/getTemplateToEditImage/<?=$image->id?>/<?=$object->id?>/"
