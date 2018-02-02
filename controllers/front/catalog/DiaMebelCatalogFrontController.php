@@ -114,7 +114,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 
 	protected function getGoodsByCategory($category)
 	{
-		$goods =  $this->getGoodsObject()
+		return $this->getGoodsObject()
 					->resetFilters()
 					->setSubquery('AND (')
                         ->setSubquery('`categoryId` = ?d', $category->id)
@@ -126,10 +126,6 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
                     ->setSubquery(') ')
 					->setSubquery('AND `statusId` NOT IN (?s)', implode(',', $this->getExludedStatusesArray()))
 					->setOrderBy('`priority` ASC, `id` ASC');
-
-		var_dump($goods->count());
-
-		return $goods;
 	}
 
 	private function setResentViewedCategories($category)
