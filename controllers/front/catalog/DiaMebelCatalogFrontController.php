@@ -114,16 +114,22 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 
 	protected function getGoodsByCategory($category)
 	{
-		return $this->getGoodsObject()
+		$goods =  $this->getGoodsObject()
 					->resetFilters()
-					->setSubquery('AND `categoryId` = ?d', $category->id)
-                    ->setSubquery('OR `id` IN (
-                            SELECT `ownerId` FROM 
-                            `'.$this->getGoodsObject()->getConfig()->mainTable().(new AdditionalCategoriesConfig())->getTablePostfix().'`
-                             WHERE `objectId` = ?d
-                        )', $category->id)
+					->setSubquery('AND (')
+                        ->setSubquery('`categoryId` = ?d', $category->id)
+                        ->setSubquery('OR `id` IN (
+                                SELECT `ownerId` FROM
+                                `'.$this->getGoodsObject()->getConfig()->mainTable().(new AdditionalCategoriesConfig())->getTablePostfix().'`
+                                 WHERE `objectId` = ?d
+                            )', $category->id)
+                    ->setSubquery(') ')
 					->setSubquery('AND `statusId` NOT IN (?s)', implode(',', $this->getExludedStatusesArray()))
 					->setOrderBy('`priority` ASC, `id` ASC');
+
+		var_dump($goods->count());
+
+		return $goods;
 	}
 
 	private function setResentViewedCategories($category)
