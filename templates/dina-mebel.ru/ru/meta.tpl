@@ -91,7 +91,7 @@
                     email: false
                 }
             },
-            trackable_source_types:  ["type_in", "utm"],
+            trackable_source_types:  ["utm"],
             last_source: false,
             use_geo: true
         };
