@@ -125,5 +125,4 @@ abstract class Controller
 		$sessionFilter = \core\SessionFilters::getInstance();
 		$sessionFilter->set('pageType', array('type'=>'object'));
 	}
-
 }

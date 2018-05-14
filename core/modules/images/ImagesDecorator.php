@@ -28,6 +28,7 @@ class ImagesDecorator extends \core\modules\base\ModuleDecorator
 		$images = new Images($this->getParentObject());
 		$categories = (is_array($categories)) ? implode(',',$categories) : (int)$categories;
 		$images->setSubquery(' AND `objectId` = ?d AND `categoryId` IN (?s) AND `statusId` = ?d ',$this->getParentObject()->id,$categories, self::STATUS_ACTIVE);
+        $images->setOrderBy(' `priority` ASC ');
 		return $images;
 	}
 
@@ -42,6 +43,8 @@ class ImagesDecorator extends \core\modules\base\ModuleDecorator
             $images->setSubquery(' AND `statusId` IN (?s)', $statuses);
         if(is_int($statuses))
 		    $images->setSubquery(' AND `statusId` = ?d', $statuses);
+
+        $images->setOrderBy(' `priority` ASC ');
 
 		return $images;
 	}

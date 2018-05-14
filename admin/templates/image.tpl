@@ -28,10 +28,10 @@
 												</select>
 											</td>
 										</tr>
-<!--										<tr>
+										<tr>
 											<td class="priority"><span>Priority:</span></td>
 											<td class="priority"><input type="text" name="priority" value="<?=$image->priority?>"/></td>
-										</tr>-->
+										</tr>
 										<tr>
 											<td class="category">
 												<span>Category:</span>

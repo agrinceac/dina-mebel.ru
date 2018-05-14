@@ -191,5 +191,4 @@ class Good extends \modules\catalog\CatalogGood implements \interfaces\IObjectTo
 	{
 		$this->stars = $this->GetStarsByViews();
 	}
-
 }
