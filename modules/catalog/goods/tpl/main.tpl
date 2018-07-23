@@ -132,7 +132,7 @@
 
 													<tr>
 														<td class="first">В слайдере:</td>
-														<td><input style="width:13px" type="checkbox" name="slyder" value="1" <?=$object->slyder?'checked':'';?> /></td>
+														<td><input style="width:20px;height:20px" type="checkbox" name="slyder" value="1" <?=$object->slyder?'checked':'';?> /></td>
 													</tr>
 													<tr>
 														<td class="first">Дата:</td>

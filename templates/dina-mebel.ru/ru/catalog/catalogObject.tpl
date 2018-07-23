@@ -182,12 +182,21 @@
 												</a>
 											</td>
 											<td><a class="buy buy2 orderOneClickModalShow pointer" data-objectId="<?=$mainGood->id?>"><img src="/images/bg/cart2.png" alt=""> &nbsp; Купить в один клик</a></td>
-											<td>
+											<?if($category->credit):?>
+                                            <td>
 												<a class="buy addToShopcart pointer" data-objectId="<?=$mainGood->id?>" data-objectClass="<?=$mainGood->getClass()?>" data-quantity="1">
 													&nbsp; Купить в кредит
 												</a>
 											</td>
-											<? if ($mainGood->instagramImgLink): ?><td align="right"><a href="<?=$mainGood->instagramImgLink?>" target="_blank" class="link instalink"><img src="/images/bg/inst.png" alt=""></a><p></p></td><?endif?>
+                                            <?endif?>
+											<? if ($mainGood->instagramImgLink):?>
+                                                <td>
+                                                <a href="<?=$mainGood->instagramImgLink?>" target="_blank" class="link instalink">
+                                                    <img src="/images/bg/inst.png" alt="">
+                                                </a>
+                                                <p></p>
+                                                </td>
+                                            <?endif?>
 											<!--<td align="right"><a href="#" class="link"><img src="/images/bg/tag.png" alt=""> Подобрать матрас</a><p></p></td>-->
 										</tr>
 									</tbody></table>

@@ -2,7 +2,8 @@
 namespace core\modules\categories;
 class CategoryConfig extends \core\modules\base\ModuleConfig
 {
-	use \core\traits\adapters\Alias;
+	use \core\traits\adapters\Alias,
+        \core\traits\adapters\Base;
 
 	protected $objectClass = '\core\modules\categories\Category';
 	protected $objectsClass = '\core\modules\categories\Categories';
@@ -26,7 +27,8 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 		'metaDescription',
 		'image',
 		'bigImage',
-		'domainAlias'
+		'domainAlias',
+        'credit'
 	);
 
 	public function rules()
@@ -54,6 +56,9 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 			'm_title, m_keywords, m_description, image, bigImage' => array(
 				'adapt' => '_adaptHtml',
 			),
+            'credit' => array(
+                'adapt' => '_adaptBool',
+            ),
 		);
 	}
 
@@ -78,5 +83,4 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 	{
 		$this->data[$key] = (!empty($this->data[$key])) ? \core\utils\Dates::convertDate($this->data[$key], 'mysql') : time() ;
 	}
-
 }

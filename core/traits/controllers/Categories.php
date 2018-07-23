@@ -60,6 +60,7 @@ trait Categories
 	{
 		$objects = new $this->objectsClass;
 		$category = $objects->getCategories()[(int)$this->getPOST()['id']];
+        $this->getPost()['credit'] = isset($this->getPost()['credit']) ? $this->getPost()['credit'] : 0;
 		$this->setObject($category)->ajax($category->edit($this->getPOST()), 'ajax');
 	}
 

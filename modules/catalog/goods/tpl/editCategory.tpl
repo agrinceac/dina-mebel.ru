@@ -30,6 +30,12 @@
 						</select>
 					</td>
 				</tr>
+                <?if($object->parentId):?>
+                <tr>
+                    <td class="first">Доступен кредит:</td>
+                    <td><input style="width:20px;height:20px" type="checkbox" name="credit" value="1" <?=$object->credit?'checked':'';?> /></td>
+                </tr>
+                <?endif?>
 				<tr>
 					<td class="first">Описание:</td>
 					<td><textarea name="description" cols="95" rows="10"><?=$object->description?></textarea>
