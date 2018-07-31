@@ -2,7 +2,6 @@ $(function(){
 	var minRef = 100000000000;
 	var maxRef = 999999999999;
 	var category = 'FURNITURE';
-//	var category = 'CRT_TV';
 
 	var data = {
 //		'inn'	: '7708828549',
@@ -64,14 +63,15 @@ function sendClaimToAnketa(basket, user, data){
     companyInfo.appendChild(inn);
     //creditInfo
     var creditInfo = xml.createElement("creditInfo");
-        var reference = xml.createElement("reference");
-            reference.textContent = data.ref;
-//        var firstPayment = xml.createElement("firstPayment");
+    var reference = xml.createElement("reference");
+    reference.textContent = data.ref;
+    var firstPayment = xml.createElement("firstPayment");
+    firstPayment.textContent = "0";
 //        var creditPeriod = xml.createElement("creditPeriod");
 //        var creditProductCode = xml.createElement("creditProductCode");
 //        var shopCode = xml.createElement("shopCode");
     creditInfo.appendChild(reference);
-//    creditInfo.appendChild(firstPayment);
+    creditInfo.appendChild(firstPayment);
 //    creditInfo.appendChild(creditPeriod);
 //    creditInfo.appendChild(creditProductCode);
 //    creditInfo.appendChild(shopCode);
@@ -157,6 +157,10 @@ function sendClaimToAnketa(basket, user, data){
     var serializedXml = new XMLSerializer().serializeToString(xml);
     //post(endpoint, {InXML:xml.documentElement.outerHTML, testMode:true});
     singleBasket = {};
+
+    // console.log( xml );
+    // return;
+
     post(endpoint, {InXML:serializedXml, testMode:false}, 'post', data);
 }
 
