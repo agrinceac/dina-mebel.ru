@@ -172,7 +172,7 @@ function sendClaimToAnketa(basket, user, data){
 
 
 
-    // console.log( xml );
+    console.log( xml );
     // return;
 
 
