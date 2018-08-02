@@ -122,6 +122,18 @@ function sendClaimToAnketa(basket, user, data){
             row.appendChild(desc);
             row.appendChild(amount);
             row.appendChild(price);
+
+            if( parseInt(basket[item].price) >= 30000   &&   parseInt(basket[item].price) <= 99000  ){
+                var action = xml.createElement('action');
+                action.textContent = 'ILKQ';
+                row.appendChild(action);
+            }
+            if( parseInt(basket[item].price) >= 100000   &&   parseInt(basket[item].price) <= 300000  ){
+                var action = xml.createElement('action');
+                action.textContent = 'ILKR';
+                row.appendChild(action);
+            }
+
             row.appendChild(img);
             specificationList.appendChild(row);
         }
@@ -158,8 +170,12 @@ function sendClaimToAnketa(basket, user, data){
     //post(endpoint, {InXML:xml.documentElement.outerHTML, testMode:true});
     singleBasket = {};
 
+
+
     // console.log( xml );
     // return;
+
+
 
     post(endpoint, {InXML:serializedXml, testMode:false}, 'post', data);
 }
