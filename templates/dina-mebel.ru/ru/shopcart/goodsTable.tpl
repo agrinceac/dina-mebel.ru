@@ -1,5 +1,12 @@
 <div class="placeForShopcartGoodsTable">
 	<?if($this->getController('Shopcart')->getShopcart()->isGoodsInShopcart()):?>
+	<?
+    /*
+    foreach($this->getShopcart() as $good) var_dump($good->getCategory()->credit);
+    die();
+    die(var_dump($this->getShopcart()));
+    */
+    ?>
 	<div class="basket">
 		<table width="100%">
 			<tbody>
@@ -41,6 +48,54 @@
 			</tbody>
 		</table>
 	</div>
+    
+    <h1>Товары доступные в кредит</h1>
+    <div class="basket">
+		<table width="100%">
+			<tbody>
+				<tr>
+					<th width="1">№ п/п</th>
+					<th>Наименование товара</th>
+					<th>Количество</th>
+					<th>Цена за единицу</th>
+					<th>Итоговая стоимость</th>
+					<th>Удалить</th>
+				</tr>
+				<? $i =1; foreach($this->getShopcart() as $good):?>
+                <? if($good->getCategory()->credit==1):?>
+				<tr class="shopcartGoodRow-credit">
+					<td><p class="num"><?=$i?></p></td>
+					<td>
+						<p class="name">
+							<a href="<?=$good->getCategory()->getPath()?>" target="blank">
+								<img class="shopcartGoodImage" src="<?=$good->getFirstImage()->getImage('86x65')?>" alt="">
+							</a>
+							<a href="<?=$good->getCategory()->getPath()?>" target="blank">
+								<span class="shopcartGoodName"><?=$good->getName()?></span>
+							</a>
+						</p>
+					</td>
+					<td><p><input type="text" class="quantity" data-goodId="<?=$good->id?>" data-goodClass="<?=$good->getClass()?>" data-goodCode="<?=$good->getCode()?>" name="quantity_<?=$good->id?>" value="<?=$good->getQuantity()?>"> шт.</p></td>
+					<td><p class="price"><span class="shopcartGoodPrice" data-shopcartGoodPrice="<?=$good->getPrice()?>"><?= number_format($good->getPrice(), 0, ',', ' ')?></span> руб</p></td>
+					<td><p class="price2"><span><?= number_format($good->getTotalPrice(), 0, ',', ' ')?></span> руб</p></td>
+					<td><p><a class="pointer removeFromShopcart" data-goodId="<?=$good->id?>" data-goodClass="<?=$good->getClass()?>" data-goodCode="<?=$good->getCode()?>"><img src="/images/bg/del.png" alt=""></a></p></td>
+				</tr>
+                <? $i++; endif?>
+				<? endforeach?>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="bg"><p class="itog">итого:</p></td>
+					<td class="bg"><p class="price2"><span><?=number_format($this->getShopcart()->getTotalPriceCredit(), 0, ',', ' ')?></span> руб</p></td>
+					<td><p><a class="resetShopcart"><img src="/images/bg/del2.png" alt=""></a></p></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+    
+    
+    
 	<div class="oformlenie">
 		<p class="title">Оформить заказ</p>
 		<table width="100%">
