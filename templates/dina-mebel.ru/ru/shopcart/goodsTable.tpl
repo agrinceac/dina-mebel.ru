@@ -157,7 +157,7 @@
 					<td align="center"><br><button class="sendOrder">Заказать</button></td>
 					<td align="center">
 						<br>
-						<script type="text/javascript" src="/js/shopcart/byInCredit.js"></script>
+						<script type="text/javascript" src="/js/shopcart/byInCredit.js?v=2018-08-20"></script>
 						<button class="byInCredit">Завершить оформление кредита</button>
 						<input type="hidden" name="inCreditMark" value="0">
 						<input type="hidden" name="ref" value="">
