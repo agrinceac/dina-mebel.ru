@@ -76,6 +76,15 @@ class Shopcart implements \Iterator, \Countable
 			$totalPrice += $good->getTotalPrice();
 		return $totalPrice;
 	}
+    
+    public function getTotalPriceCredit()
+	{
+		$totalPrice = 0;
+		foreach ($this->getGoods() as $good)
+			if($good->getCategory()->credit==1)
+                $totalPrice += $good->getTotalPrice();
+		return $totalPrice;
+	}
 
 	public function getTotalQuantity()
 	{

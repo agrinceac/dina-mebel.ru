@@ -21,7 +21,7 @@ $(function(){
 		};
 
 		var basket = [];
-		$('.shopcartGoodRow').each(function(){
+		$('.shopcartGoodRow-credit').each(function(){
 			basket[ $(this).find('.shopcartGoodName').html() ] = {
 				'category'		: category,
 				'code'			: '#' + $(this).find('.quantity').attr('data-goodId'),
@@ -66,7 +66,7 @@ function sendClaimToAnketa(basket, user, data){
     var reference = xml.createElement("reference");
     reference.textContent = data.ref;
     var firstPayment = xml.createElement("firstPayment");
-    firstPayment.textContent = "0";
+    firstPayment.textContent = 0;
 //        var creditPeriod = xml.createElement("creditPeriod");
 //        var creditProductCode = xml.createElement("creditProductCode");
 //        var shopCode = xml.createElement("shopCode");
@@ -101,7 +101,20 @@ function sendClaimToAnketa(basket, user, data){
     clientInfo.appendChild(mobphone);
     //specificationList
     var specificationList = xml.createElement("specificationList");
+    var totalBasketPrice = 0;
+    
     if (!$.isEmptyObject(basket)){
+        for(var item in basket){
+            totalBasketPrice += basket[item].price;
+        }
+        
+        if( parseInt(totalBasketPrice) >= 10000   &&   parseInt(totalBasketPrice) < 100000  ){
+            creditContent = 'ILKQ';
+        }
+        if( parseInt(totalBasketPrice) >= 100000   &&   parseInt(totalBasketPrice) <= 300000  ){
+            creditContent = 'ILKR';
+        }
+            
         for(var item in basket){
             var row = xml.createElement("specificationListRow");
             var desc = xml.createElement("description");
@@ -122,8 +135,12 @@ function sendClaimToAnketa(basket, user, data){
             row.appendChild(desc);
             row.appendChild(amount);
             row.appendChild(price);
-
-            if( parseInt(basket[item].price) >= 30000   &&   parseInt(basket[item].price) <= 99000  ){
+            
+            var action = xml.createElement('action');
+            action.textContent = creditContent;
+            row.appendChild(action);
+            
+            /*if( parseInt(basket[item].price) >= 30000   &&   parseInt(basket[item].price) <= 99000  ){
                 var action = xml.createElement('action');
                 action.textContent = 'ILKQ';
                 row.appendChild(action);
@@ -132,7 +149,7 @@ function sendClaimToAnketa(basket, user, data){
                 var action = xml.createElement('action');
                 action.textContent = 'ILKR';
                 row.appendChild(action);
-            }
+            }*/
 
             row.appendChild(img);
             specificationList.appendChild(row);
@@ -177,7 +194,7 @@ function sendClaimToAnketa(basket, user, data){
 
 
 
-    post(endpoint, {InXML:serializedXml, testMode:false}, 'post', data);
+    post(endpoint, {InXML:serializedXml, testMode:true}, 'post', data);
 }
 
 
