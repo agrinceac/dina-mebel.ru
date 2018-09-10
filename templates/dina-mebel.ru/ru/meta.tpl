@@ -22,10 +22,12 @@
 	<?
 	$css = $this->getController('imploder')->css();
 	$css->add('style.css', '/css/dia-mebel/')
+		->add('adaptive.css', '/css/dia-mebel/')
 		->add('errors.css', '/admin/js/base/actions/styles/');
 	$css->printf('compact');
 	?>
 	<!-- End: CSS files -->
+
 
 	<!-- Start: JS scripts -->
 	<script type="text/javascript">

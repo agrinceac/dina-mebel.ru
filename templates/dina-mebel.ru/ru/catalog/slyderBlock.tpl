@@ -6,14 +6,12 @@
         <?if(!$object->slyderText):?>
         <a href="<?=$object->getCategory()->getPath()?>">
         <?endif;?>
-		<div class="slide"
-             style="
+		<div class="slide" style="
                 background-image:url(<?=$object->getFirstPrimaryImage()->getImage('980x0')?>);
                 <?if(!$object->slyderText):?>
                 background-size: auto 280px;
                 <?endif;?>
-             "
-        >
+             ">
             <?if($object->slyderText):?>
 			<div class="description descriptionOfSlideNr_<?=$i?>">
 				<p class="title"><?=$object->getCategory()->name?></p>
