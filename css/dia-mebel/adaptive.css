@@ -227,9 +227,37 @@
         width: 100%;
     }
 
+    .about-list {
+        flex-direction: column;
+    }
+
+    .phone-icon {
+        width: 37% !important;
+    }
+
+    .list-unstyled.row {
+        flex-direction: column;
+    }
+
+    .car-icon {
+        margin: 15px !important;
+    }
+
+    .pedestrian-icon {
+        margin: 25px !important;
+    }
+
 }
 
 @media (max-width: 767px) {
+
+    .list-unstyled.about-list li {
+        padding-left: 0;
+    }
+
+    #how-to-get-there {
+        padding: 24px 0 !important;
+    }
 
     .pre_catalog .cat_item .caption {
         width: 45%;
@@ -832,6 +860,10 @@
         margin-top: 20px;
     }
 
+    .showroom__title {
+        margin-top: 20px;
+    }
+
     .view_tovar {
         display: none;
     }
@@ -857,7 +889,7 @@
     }
 
     .razdel__first {
-        margin-top: 10px;
+        margin-top: 40px;
     }
 
     .left_menu {
@@ -1096,6 +1128,24 @@
     .service_list {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .pay .recall {
+        left: 0;
+        width: 100%;
+        margin-left: 1px;
+    }
+
+    .call-modal td img {
+        width: 100%;
+    }
+
+    #customer_phone {
+        width: 100%;
+    }
+
+    .img-responsive {
+        min-width: 100% !important;
     }
 }
 

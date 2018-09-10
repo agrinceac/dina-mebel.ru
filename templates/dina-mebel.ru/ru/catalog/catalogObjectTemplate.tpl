@@ -1,6 +1,6 @@
 <div class="cat_in <?= $iteration%2==0 ? 'f_right' : 'f_left'?>" itemscope itemtype="http://schema.org/Product">
 	<div class="image">
-		<a href="<?=$object->getPath()?>" itemprop="url"><img src="<?=$good->getFirstImage()->getFocusImage(isset($imgSize) ? $imgSize : '345x244');?>" alt="" itemprop="image" /></a>
+		<a href="<?=$object->getPath()?>" itemprop="url"><img class="catalog-img" src="<?=$good->getFirstImage()->getFocusImage(isset($imgSize) ? $imgSize : '345x244');?>" alt="" itemprop="image" /></a>
 	</div>
 	<div class="desc">
 		<div class="name">

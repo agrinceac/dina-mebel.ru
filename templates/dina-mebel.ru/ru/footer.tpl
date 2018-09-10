@@ -2,7 +2,7 @@
 		<div class="max_width">
 			<div class="foot_in">
 				<table width="100%" class="footer_table">
-					<tr>
+					<tr class="foot_in__tr">
 						<?=$this->getController('Article')->getArticle('schedule_footer')->text?>
 						<td>
 							<div class="foot_menu">
@@ -11,7 +11,7 @@
 								<?endforeach?>
 							</div>
 						</td>
-						<td>
+						<td class="foot_in__logo">
 							<p><a href="/"><img src="/images/bg/logo2.png" alt="" /></a></p>
 							<p><br /></p>
 							<p class="desc">Широкий выбор классической мебели</p>
