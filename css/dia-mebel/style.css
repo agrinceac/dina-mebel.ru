@@ -2417,7 +2417,7 @@ div.logo img.logoPic {
 }
 
 .img-min-ul {
-    width: 100%;
+    width: 100% !important;
 }
 
 .slides_control {
@@ -2433,7 +2433,7 @@ div.logo img.logoPic {
 }
 
 .catalog-accardion_icon {
-    background: url("add.svg") no-repeat center; /* nado zamenit put */
+    background: url(/images/bg/add.svg) no-repeat center; /* nado zamenit put */
     background-size: 100% auto;
     width: 15px;
     height: 15px;
@@ -2444,7 +2444,7 @@ div.logo img.logoPic {
 }
 
 .catalog-accardion_icon.in {
-    background: url("minus.svg") no-repeat center; /* nado zamenit put */
+    background: url(/images/bg/minus.svg) no-repeat center; /* nado zamenit put */
     background-size: 100% auto;
     width: 15px;
     height: 15px;

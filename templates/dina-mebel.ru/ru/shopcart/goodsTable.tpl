@@ -48,7 +48,7 @@
 			</tbody>
 		</table>
 	</div>
-    
+
     <h1>Товары доступные в кредит</h1>
     <div class="basket">
 		<table width="100%">

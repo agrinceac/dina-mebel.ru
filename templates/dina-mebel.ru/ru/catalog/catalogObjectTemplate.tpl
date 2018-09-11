@@ -23,7 +23,8 @@
 			<table width="100%">
 				<tbody>
 					<tr>
-						<td><p class="price"><span><?=number_format($good->getPriceByQuantity(1), 0, '.', ' ')?></span> руб</p>
+						<td class="price_container">
+							<p class="price"><span><?=number_format($good->getPriceByQuantity(1), 0, '.', ' ')?></span> руб</p>
 						<p class="buyBlock">
 								<a class="buy addToShopcart pointer" data-objectId="<?=$good->id?>" data-objectClass="<?=$good->getClass()?>" data-quantity="1" onclick='yaCounter22453480.reachGoal("click_kupit"); ga("send", "event", "click_kupit", "done");'>
 									Купить

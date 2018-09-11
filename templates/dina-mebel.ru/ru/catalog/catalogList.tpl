@@ -24,7 +24,7 @@
 							</div>-->
 						</div>
 					</div>
-					<h1><?= isset($title) ? $title : $category->getH1()?></h1>
+					<h1 class="page_title"><?= isset($title) ? $title : $category->getH1()?></h1>
 					<div class="clear"></div>
 
 					<?if(isset($category)):?>

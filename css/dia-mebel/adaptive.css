@@ -251,6 +251,19 @@
 
 @media (max-width: 767px) {
 
+    .big-photo {
+        height: auto;
+    }
+
+    .big-photo,
+    .hidden-photo {
+        width: 100%;
+    }
+
+    .view_tovar {
+        display: none;
+    }
+
     .list-unstyled.about-list li {
         padding-left: 0;
     }
@@ -1069,7 +1082,7 @@
         padding-right: 10px;
     }
 
-    .title__delivery {
+    .page_title {
         margin-top: 20px;
     }
 
@@ -1111,6 +1124,15 @@
     .pre_catalog__container {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .razdel-block {
+        padding-top: 40px;
+    }
+
+    .razdel-block__btn .title__burger.button-catalog-open {
+        top: -30px;
+        z-index: 300;
     }
 }
 
@@ -1259,5 +1281,17 @@
 
     .pre_catalog .cat_item p {
         line-height: 140%;
+    }
+
+    .general-information_td {
+        max-width: 306px;
+    }
+
+    .offer__table-advantages {
+        max-width: 350px;
+    }
+
+    .offer__table {
+        display: table-row;
     }
 }

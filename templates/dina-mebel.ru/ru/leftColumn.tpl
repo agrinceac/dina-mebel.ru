@@ -1,4 +1,4 @@
-<div class="left_col">
+<div class="left_col left_col__catalog"> <!-- добавил класс left_col__catalog -->
 	<div class="col_in">
 		<div class="left_menu">
 			<?$this->getController('Catalog')->getLeftCategoriesBlock()?>
