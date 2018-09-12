@@ -50,7 +50,6 @@
 		->add('slides.js')
 //		->add('iLoad.js', '/js/')
 		->add('main-js.js', '/js/')
-		->add('carusel.js', '/js/')
 		->add('loader.class.js','/admin/js/base/actions/')
 		->add('form.class.js','/admin/js/base/actions/')
 		->add('feedbackHandler.js','/js/feedback/')

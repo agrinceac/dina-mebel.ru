@@ -75,6 +75,7 @@
 
 
 									<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+									<script type="text/javascript" src="/js/carusel.js"></script>
                                     <script type="text/javascript" src="/js/plugins/gallery/gallery.js"></script>
                                     <script type="text/javascript" src="/js/catalog/catalogObject.js"></script>
 
