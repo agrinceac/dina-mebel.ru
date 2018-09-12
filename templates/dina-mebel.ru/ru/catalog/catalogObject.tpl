@@ -141,7 +141,7 @@
 											<div class="title"><a class="close pointer">закрыть</a> <span>Обратный звонок</span></div>
 											<div class="pop_in">
 												<form action="/order/sendOrderByOneClick/" method="post" class="orderByOneClick">
-													<table align="center">
+													<table align="center" class="call-modal">
 														<tbody>
 															<tr>
 																<td align="center"><img src="/images/bg/20.png" alt=""></td>
