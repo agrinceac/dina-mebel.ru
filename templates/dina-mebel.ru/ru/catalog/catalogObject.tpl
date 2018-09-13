@@ -267,9 +267,11 @@
 					<?if($similarNotMainCategories->count()):?>
 					<div class="catalog2">
 						<p class="title">Возможно вас заинтересует:</p>
-                        <?$iteration=1; foreach($similarNotMainCategories as $category):?>
-                        <?$this->getController('Catalog')->getCatalogObjectTemplateBlock($category, $iteration)?>
-                        <?$iteration++; endforeach?>
+						<div class="catalog2-section">
+							<?$iteration=1; foreach($similarNotMainCategories as $category):?>
+							<?$this->getController('Catalog')->getCatalogObjectTemplateBlock($category, $iteration)?>
+							<?$iteration++; endforeach?>
+						</div>
 					</div>
 					<?endif?>
 					<div class="clear"></div>

@@ -35,17 +35,18 @@
 					<div class="clear"></div>
 
 					<div class="catalog2">
-						<?if($objects->count()):?>
-						 <? $iteration=1; foreach($objects as $object):?>
-						<?$this->getController('Catalog')->getCatalogObjectTemplateBlock($object, $iteration)?>
-						<? $iteration++; endforeach?>
-						<?else:?>
-						<p>
-							По вашему запросу ничего не найдено.
-							Попробуйте поискать по другому запросу или перейдите на <a href="/">главную страницу</a>.
-						</p>
-						<?endif?>
-						<div class="clear"></div>
+						<div class="catalog2-section">
+							<?if($objects->count()):?>
+							 <? $iteration=1; foreach($objects as $object):?>
+							<?$this->getController('Catalog')->getCatalogObjectTemplateBlock($object, $iteration)?>
+							<? $iteration++; endforeach?>
+							<?else:?>
+							<p>
+								По вашему запросу ничего не найдено.
+								Попробуйте поискать по другому запросу или перейдите на <a href="/">главную страницу</a>.
+							</p>
+							<?endif?>
+						</div>
 					</div>
 					<div class="sort">
 						<div class="col_in">

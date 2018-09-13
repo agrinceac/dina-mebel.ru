@@ -1291,3 +1291,94 @@
         display: table-row;
     }
 }
+
+@media  (min-width: 1025px) {
+    .max_width {
+        max-width: 1200px;
+        width: 99%;
+    }
+
+    .cat_in img {
+        width: 100%;
+    }
+
+    .catalog2 {
+        justify-content: space-between;
+    }
+
+    .catalog2 .cat_in {
+        width: 300px;
+        margin: inherit;
+        margin-bottom: 15px;
+    }
+
+    .header-table__retail-department * {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .header-table__tr td {
+        padding: 0 43px;
+    }
+
+    .list-unstyled.about-list {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .list-unstyled.about-list img {
+        width: auto;
+    }
+
+    .list-unstyled.about-list li {
+        flex: 1;
+    }
+
+    .catalog .cat_in {
+        width: 32%;
+    }
+
+    .general-information_td {
+        max-width: 33%;
+    }
+
+    .left_product {
+        max-width: 780px;
+        float: left;
+        width: 80%;
+    }
+
+    .catalog2-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .oformlenie-table__tr-flex td:first-child {
+        display: flex;
+    }
+
+    .oformlenie-table__tr-flex td:first-child .inputs-min-width {
+        margin-right: 10px;
+    }
+
+    .price_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media  (min-width: 1170px) {
+    .catalog2-section .cat_in {
+        margin-right: 5px !important;
+    }
+
+    .catalog2-section .cat_in:nth-child(3n) {
+        margin-right: 0 !important;
+    }
+
+    .catalog2-section {
+        justify-content: flex-start;
+    }
+}

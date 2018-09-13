@@ -2453,3 +2453,21 @@ div.logo img.logoPic {
     right: 4px;
     top: 6px;
 }
+
+.catalog-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.catalog2-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.service_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

@@ -38,5 +38,4 @@
 	</div>
 </div>
 <?if($iteration%2==0):?>
-<div class="clear"></div>
 <?endif?>
