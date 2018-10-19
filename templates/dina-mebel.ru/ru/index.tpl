@@ -8,76 +8,103 @@
 					<p class="title">Каталог товаров</p>
 
 					<div class="pre_catalog__container">
-						<div class="cat_item " style="background-image:url(/images/del/01.jpg)">
+						<div class="cat_item">
+							<a href="/spalni/">
+								<div class="cat_item__img" style="background-image: url(images/del/spalni.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Спальни</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href="/spalni/"><p class="name">Спальни</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/spalni/">Посмотреть каталог спален</a></p>
+								<p class="more"><a href="/spalni/">Посмотреть каталог спален</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item">
+							<a href="/gostinye/">
+								<div class="cat_item__img" style="background-image: url(images/del/gostinie.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Гостиные</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href="/gostinye/"><p class="name">Гостиные</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/01.jpg)">
+						<div class="cat_item ">
+							<a href="#">
+								<div class="cat_item__img" style="background-image: url(images/del/mebel.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name line-text_normal">Мягкая мебель</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name line-text_normal">Мягкая мебель</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/spalni/">Посмотреть каталог мягкой мебели</a></p>
+								<p class="more"><a href="/spalni/">Посмотреть каталог мягкой мебели</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item ">
+							<a href="#">
+								<div class="cat_item__img" style="background-image: url(images/del/kuhni.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Кухни</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name">Кухни</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/01.jpg)">
+						<div class="cat_item">
+							<a href="#">
+								<div class="cat_item__img" style="background-image: url(images/del/prihojie.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Прихожие</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name">Прихожие</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/spalni/">Посмотреть каталог спален</a></p>
+								<p class="more"><a href="/spalni/">Посмотреть каталог спален</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item ">
+							<a href="#">
+								<img src="/images/del/02.jpg" alt="">
+							</a>
 							<div class="caption">
-								<p class="name">Гостиные</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name">Детские</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item ">
+							<a href="#">
+								<div class="cat_item__img" style="background-image: url(images/del/kabinet.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Кабинет</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name">Кабинет</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item ">
+							<a href="/mATRASYI/">
+								<img src="/images/del/02.jpg" alt="">
+							</a>
 							<div class="caption">
-								<p class="name">Матрасы</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href="/mATRASYI/"><p class="name">Матрасы</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
-						<div class="cat_item " style="background-image:url(/images/del/02.jpg)">
+						<div class="cat_item">
+							<a href="#">
+								<div class="cat_item__img" style="background-image: url(images/del/discont.jpg)"></div>
+							</a>
 							<div class="caption">
-								<p class="name">Дисконт</p>
-								<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
+								<a href=""><p class="name">Дисконт</p></a>
+								<!--<p>Крупнейший производитель элитной корпусной мебели в России. Вот уже 11 лет наша фабрика
 									радует россиян </p>
-								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>
+								<p class="more"><a href="/gostinye/">Посмотреть каталог гостиных</a></p>-->
 							</div>
 						</div>
 					</div>

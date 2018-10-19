@@ -17,14 +17,17 @@ $(function(){
     });
 });
 
-$(document).ready(function () {
+//скрипт для подкатегорий в левом меню
 
-    $('.catalog-accardion_icon').click(function () {
-        $(this).toggleClass('in').next().slideToggle();
-        $('.catalog-accardion_icon').not(this).removeClass('in').next().slideUp();
-    });
+// $(document).ready(function () {
+//
+//     $('.catalog-accardion_icon').click(function () {
+//         $(this).toggleClass('in').next().slideToggle();
+//         $('.catalog-accardion_icon').not(this).removeClass('active').next().slideUp();
+//     });
+//
+// });
 
-});
 
 $(function () {
     $('.title__burger').click(function () {
