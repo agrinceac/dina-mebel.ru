@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
     });
 
     $('.img-min-ul').slick({
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         asNavFor: '.img-big-ul',
         dots: false,
@@ -23,7 +23,47 @@ jQuery(document).ready(function($) {
                     slidesToShow: 2,
                     slidesToScroll: 1
                 }
-            }
+            },
+
+            {
+                breakpoint: 580,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            },
+
+            {
+                breakpoint: 680,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+
+            {
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 1
+                }
+            },
+
+            {
+                breakpoint: 1123,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
         ]
     });
 });

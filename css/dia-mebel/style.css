@@ -1800,7 +1800,7 @@ h1 {
 }
 
 .left_product {
-    width: 563px;
+    width: 79%;
     float: left;
 }
 
@@ -2198,13 +2198,10 @@ h1 {
     overflow: hidden;
     position: relative;
     background: #fff;
-}
-
-.big-photo {
-    width: 563px;
-    height: 423px;
     display: block;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mini-photo {
@@ -2215,7 +2212,8 @@ h1 {
 .hidden-photo {
     display: block;
     height: 62px;
-    width: 539px;
+    /*width: 539px;*/
+    width: 100%;
     overflow: hidden;
     position: relative;
 }
@@ -2400,7 +2398,8 @@ div.logo img.logoPic {
 }
 
 .img-min-ul__image {
-    margin-right: 20px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .img-big-ul__image {
