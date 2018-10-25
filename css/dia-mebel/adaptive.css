@@ -1144,9 +1144,7 @@
     }
 
     .pay .recall {
-        left: 0;
-        width: 100%;
-        margin-left: 1px;
+        width: 90%;
     }
 
     .call-modal td img {
