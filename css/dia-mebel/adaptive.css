@@ -1129,6 +1129,10 @@
 
 @media  (max-width: 1023px) {
 
+    .razdel li.current, .razdel .current {
+        background: none;
+    }
+
     .footer .foot_basket {
         width: 100%;
     } /* переопределил стиль */

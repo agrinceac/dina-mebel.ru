@@ -173,18 +173,34 @@
 										<tbody>
 											<tr class="btn-table__tr">
 												<td>
-													<a class="buy addToShopcart pointer" data-objectId="<?=$mainGood->id?>" data-objectClass="<?=$mainGood->getClass()?>" data-quantity="1">
+													<a class="buy addToShopcart pointer"
+                                                       data-objectId="<?=$mainGood->id?>"
+                                                       data-objectClass="<?=$mainGood->getClass()?>"
+                                                       data-quantity="1"
+                                                    >
 														&nbsp; Купить
 													</a>
 												</td>
-												<td><a class="buy buy2 orderOneClickModalShow pointer" data-objectId="<?=$mainGood->id?>"><img src="/images/bg/cart2.png" alt=""> &nbsp; Купить в один клик</a></td>
-												<?if($category->credit):?>
 												<td>
-													<a class="buy addToShopcart pointer" data-objectId="<?=$mainGood->id?>" data-objectClass="<?=$mainGood->getClass()?>" data-quantity="1">
+                                                    <a class="buy buy2 orderOneClickModalShow pointer"
+                                                       data-objectId="<?=$mainGood->id?>"><img src="/images/bg/cart2.png" alt=""
+                                                    >
+                                                        &nbsp; Купить в один клик
+                                                    </a>
+                                                </td>
+
+                                                <?if($category->credit):?>
+												<td>
+													<a class="buy addToShopcart pointer"
+                                                       data-objectId="<?=$mainGood->id?>"
+                                                       data-objectClass="<?=$mainGood->getClass()?>"
+                                                       data-quantity="1"
+                                                    >
 														&nbsp; Купить в кредит
 													</a>
 												</td>
 												<?endif?>
+
 												<? if ($mainGood->instagramImgLink):?>
 													<td>
 													<a href="<?=$mainGood->instagramImgLink?>" target="_blank" class="link instalink">
@@ -193,7 +209,7 @@
 													<p></p>
 													</td>
 												<?endif?>
-												<!--<td align="right"><a href="#" class="link"><img src="/images/bg/tag.png" alt=""> Подобрать матрас</a><p></p></td>-->
+
 											</tr>
 										</tbody>
 									</table>
@@ -222,7 +238,10 @@
 						<?if($objects->count()): foreach($objects as $object):?>
 						<div class="preview">
 							<div class="image">
-								<a href="<?=$object->getFirstImage()->getImage()?>" rel="iLoad">
+								<a href="<?=$object->getFirstImage()->getImage()?>"
+                                   data-fancybox="gallery"
+                                   class="smallImage"
+                                >
 									<span class="zoom"></span>
 									<img src="<?=$object->getFirstImage()->getImage('245x184')?>" alt="" />
 								</a>

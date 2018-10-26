@@ -75,10 +75,12 @@ trait Categories
 
 		$tabs = array('editCategory' => 'Основная информация');
 		$this->setContent('mainCategories', $objectsObject->getMainCategories(1))
-			 ->setContent('statuses', $objectsObject->getMainCategories()->getStatuses())
-			 ->setContent('tabs', $tabs)
-			 ->setContent('object', $category)
-			 ->includeTemplate(lcfirst($this->objectsClassName).'Category');
+            ->setContent('mainCategoriesTypeCategory', $objectsObject->getMainCategoriesTypeCategory(1))
+            ->setContent('mainCategoriesTypeGood', $objectsObject->getMainCategoriesTypeGood(1))
+            ->setContent('statuses', $objectsObject->getMainCategories()->getStatuses())
+            ->setContent('tabs', $tabs)
+            ->setContent('object', $category)
+            ->includeTemplate(lcfirst($this->objectsClassName).'Category');
 	}
 
 	protected function removeCategory()

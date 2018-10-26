@@ -5,6 +5,19 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 	use \core\traits\adapters\Alias,
         \core\traits\adapters\Base;
 
+	private $catalogTypesArray = array(
+	    'category' => array(
+	        'alias' => 'category',
+            'name' => 'категория',
+            'color' => 'blue'
+        ),
+        'good' => array(
+            'alias' => 'good',
+            'name' => 'товар',
+            'color' => 'green'
+        )
+    );
+
 	protected $objectClass = '\core\modules\categories\Category';
 	protected $objectsClass = '\core\modules\categories\Categories';
 
@@ -28,7 +41,8 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 		'image',
 		'bigImage',
 		'domainAlias',
-        'credit'
+        'credit',
+        'type'
 	);
 
 	public function rules()
@@ -83,4 +97,9 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 	{
 		$this->data[$key] = (!empty($this->data[$key])) ? \core\utils\Dates::convertDate($this->data[$key], 'mysql') : time() ;
 	}
+
+	public function getCatalogTypesArray()
+    {
+        return $this->catalogTypesArray;
+    }
 }

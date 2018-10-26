@@ -64,4 +64,19 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 		return 'daily';
 	}
 	/*   End: Sitemap Methods */
+
+	public function getTypeAlias()
+    {
+        return $this->type;
+    }
+
+    public function getTypeName()
+    {
+        return (new CategoryConfig())->getCatalogTypesArray()[$this->type]['name'];
+    }
+
+    public function getTypeColor()
+    {
+        return (new CategoryConfig())->getCatalogTypesArray()[$this->type]['color'];
+    }
 }

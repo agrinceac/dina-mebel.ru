@@ -4,24 +4,28 @@
 			<?$this->getController('Catalog')->getLeftCategoriesBlock()?>
 		</div>
 	</div>
+
 	<?if(isset($_SESSION['recentViewedCategories'])):?>
 	<div class="view_tovar">
 		<p class="title">Просмотренный товар:</p>
 		<?foreach($_SESSION['recentViewedCategories'] as $id=>$alias):?>
+        <?$viewedCategory = $this->getController('Catalog')->getCategoryByAlias($alias);?>
+        <?if($viewedCategory):?>
 		<div class="tovar">
 			<p class="name">
-				<a href="<?=$this->getController('Catalog')->getCategoryByAlias($alias)->getPath()?>">
-					<?=$this->getController('Catalog')->getCategoryByAlias($alias)->getH1()?>
+				<a href="<?=$viewedCategory->getPath()?>">
+					<?=$viewedCategory->getH1()?>
 				</a>
 			</p>
 			<div class="image">
-				<a href="<?=$this->getController('Catalog')->getCategoryByAlias($alias)->getPath()?>">
+				<a href="<?=$viewedCategory->getPath()?>">
 					<img src="<?=$this->getController('Catalog')->getMainGood($id)->getFirstImage()->getImage('230x164')?>" alt="" />
 				</a>
 			</div>
-			<p class="more"><a href="<?=$this->getController('Catalog')->getCategoryByAlias($alias)->getPath()?>">подробнее</a></p>
+			<p class="more"><a href="<?=$viewedCategory->getPath()?>">подробнее</a></p>
 			<p class="price"><span><?=number_format($this->getController('Catalog')->getMainGood($id)->getPriceByQuantity(1), 0, '.', ' ')?></span> руб.</p>
 		</div>
+        <?endif?>
 		<?endforeach?>
 	</div>
 	<?endif?>

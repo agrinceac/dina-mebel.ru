@@ -46,6 +46,44 @@ class ParentDecorator extends ModuleDecorator
 		    return false;
 		
 		return $objects;
-	}	
+	}
+
+    public function getChildrenTypeCategory($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $config = clone $this->getConfig();
+        $config->removePostfix();
+        $className = $config->getObjectsClass();
+        $objects = new $className($config);
+        if (!empty($statusesArray))
+            $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+        $objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
+                ->setSubquery(' AND `type` = "category"')
+                ->setOrderBy('`priority` ASC');
+        if($objects->count() == 0)
+            return false;
+
+        return $objects;
+    }
+
+    public function getChildrenTypeGood($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $config = clone $this->getConfig();
+        $config->removePostfix();
+        $className = $config->getObjectsClass();
+        $objects = new $className($config);
+        if (!empty($statusesArray))
+            $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+        $objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
+                ->setSubquery(' AND `type` = "good"')
+                ->setOrderBy('`priority` ASC');
+        if($objects->count() == 0)
+            return false;
+
+        return $objects;
+    }
 
 }

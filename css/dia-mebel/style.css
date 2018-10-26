@@ -940,7 +940,9 @@ a:active {
     font-size: 14px;
     padding: 0 12px;
     height: 27px;
-    line-height: 26px;
+    /*line-height: 26px;*/
+    display: flex;
+    align-items: center;
 }
 
 .razdel li {
@@ -950,12 +952,16 @@ a:active {
     padding: 0 12px;
     height: 27px;
     line-height: 26px;
+    /*margin-left: 10px;*/
 }
 
-.razdel li.current, .razdel .name.current {
+.razdel li.current, .razdel .current {
     background: url(/images/bg/left_menu.png) no-repeat right top;
     color: #ff612a;
     font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-size: auto 100%;
 }
 
 .razdel li.current a {
@@ -1816,7 +1822,7 @@ h1 {
     background: url(/images/bg/caption.png) repeat left top;
     width: 100%;
     z-index: 9;
-    margin-bottom: 91px; /* zamenil stil */
+    margin-bottom: 86px; /* zamenil stil */
 }
 
 .product_image .caption td {

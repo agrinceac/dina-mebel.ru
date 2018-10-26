@@ -1,8 +1,12 @@
 <div class="cat_in <?= $iteration%2==0 ? 'f_right' : 'f_left'?>" itemscope itemtype="http://schema.org/Product">
 	<div class="image">
-		<a href="">
+
+        <?if($object->credit):?>
+		<a class="addToShopcart" data-objectId="<?=$good->id?>" data-objectClass="<?=$good->getClass()?>" data-quantity="1">
 			<i class="image-icon_credit" title="Купить в кредит"></i>
 		</a>
+        <?endif?>
+
 		<a href="<?=$object->getPath()?>" itemprop="url">
 			<img class="catalog-img" src="<?=$good->getFirstImage()->getFocusImage(isset($imgSize) ? $imgSize : '345x244');?>" alt="" itemprop="image" />
 		</a>
@@ -14,12 +18,6 @@
 					<tr>
 						<td><p class="name_in"><a href="<?=$object->getPath()?>"> <span><?=$object->getH1()?></span> </a></p></td>
 						<meta itemprop="name" content="<?=$object->getH1()?>" />
-						<!--<td width="<?=$good->getOldPrice() ? '130' : '1'?>" style="<?=$good->getOldPrice() ?: 'border:inherit;height:38px;'?>">
-							<?if($good->getOldPrice()):?>
-							<p class="oldprice">Старая цена<br><span><?=number_format($good->getOldPrice(), 0, '.', ' ')?> руб</span></p>
-							<p class="delta">Скидка: <?=number_format($good->getDiscount(), 0, '.', ' ')?> руб</p>
-							<?endif?>
-						</td>-->
 					</tr>
 				</tbody>
 			</table>
@@ -40,16 +38,18 @@
 								</a>
 							</p>
 						</td>
+                        <?if($good->getOldPrice()):?>
 						<td class="discounts__container">
 							<p class="price_container__old-price">
 								"Старая цена"
 								<br>
-								<span>189 300 руб</span>
+								<span><?=number_format($good->getOldPrice(), 0, '.', ' ')?> руб</span>
 							</p>
 							<p class="discounts">
-								Скидка: 26 100 руб
+								Скидка: <?=number_format($good->getDiscount(), 0, '.', ' ')?> руб
 							</p>
 						</td>
+                        <?endif?>
 					</tr>
 				</tbody>
 			</table>

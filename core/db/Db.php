@@ -52,6 +52,9 @@ class Db
 		}
 
 		$this->query = $query;
+
+//		var_dump( $query );
+
 		$result = mysql_query($query,self::$db) or $this->errorAction();
 		self::$query_count++;
 		return $result;

@@ -95,19 +95,34 @@
 														<td>
 															<select name="categoryId" style="width:150px;">
 															<option></option>
-															<?if ($objects->getMainCategories()->count()): foreach($objects->getMainCategories() as $categoryObject):?>
+															<?if($objects->getMainCategoriesTypeCategory()->count()): foreach($objects->getMainCategoriesTypeCategory() as $categoryObject):?>
 															<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$object->categoryId) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
-																<?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
+
+                                                                <?if($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
 																<option value="<?=$children->id?>" <?=($children->id==$object->categoryId) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
-																	<?php if ($children->getChildren()): foreach($children->getChildren() as $children2):?>
+
+                                                                    <?if($children->getChildrenTypeCategory()): foreach($children->getChildrenTypeCategory() as $children2):?>
 																	<option value="<?=$children2->id?>" <?=($children2->id==$object->categoryId) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
-																	<?php endforeach; endif;?>
-																<?php endforeach; endif;?>
-															<?php endforeach; endif;?>
+																	<?endforeach; endif;?>
+
+                                                                    <?if($children->getChildrenTypeGood()): foreach($children->getChildrenTypeGood() as $children2):?>
+                                                                        <option value="<?=$children2->id?>" <?=($children2->id==$object->categoryId) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<?=$children2->name?></option>
+                                                                    <?endforeach; endif;?>
+
+																<?endforeach; endif;?>
+
+                                                                <?if($categoryObject->getChildrenTypeGood()): foreach($categoryObject->getChildrenTypeGood() as $children):?>
+                                                                    <option value="<?=$children->id?>" <?=($children->id==$object->categoryId) ? 'selected' : ''; ?>>&nbsp;&nbsp;--&nbsp;<?=$children->name?></option>
+                                                                <?endforeach; endif;?>
+
+															<?endforeach; endif;?>
 															</select>
 														</td>
 													</tr>
 
+
+
+                                                    <!--
                                                     <script type="text/javascript" src="/modules/catalog/js/additionalCategories.js"></script>
                                                     <script type="text/javascript" src="/admin/js/jquery/multi-select/multi-select.js"></script>
                                                     <link rel="stylesheet" type="text/css" href="/admin/js/jquery/multi-select/multi-select.css" />
@@ -116,7 +131,7 @@
                                                         <td>
                                                             <br>
                                                             <select name="additionalCategories[]" multiple="multiple" class="additionalCategories" style="width:150px;">
-                                                                <?if ($objects->getMainCategories()->count()): foreach($objects->getMainCategories() as $categoryObject):?>
+                                                                <?if($objects->getMainCategories()->count()): foreach($objects->getMainCategories() as $categoryObject):?>
                                                                     <optgroup label="<?=$categoryObject->name?>">
                                                                         <?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
                                                                             <option value="<?=$children->id?>" <?=   isset($object->id)   ?   (in_array($children->id, $object->additionalCategoriesArray)) ? 'selected' : ''   :    '' ?>><?=$children->name?></option>
@@ -129,6 +144,10 @@
                                                             </select>
                                                         </td>
                                                     </tr>
+                                                    -->
+
+
+
 
 													<tr>
 														<td class="first">В слайдере:</td>

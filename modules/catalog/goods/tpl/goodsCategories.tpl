@@ -24,11 +24,11 @@
 									<select class="filterInput" name="parentCategoryId">
 										<option></option>
 										<option value="baseCategories" <?=($this->getGET()['parentCategoryId']=='baseCategories') ? 'selected' : ''; ?>>---Основные категории---</b></option>
-										<?php if ($objects->getMainCategories()->count()): foreach($objects->getMainCategories() as $categoryObject):?>
+										<?php if ($objects->getMainCategoriesTypeCategory()->count()): foreach($objects->getMainCategoriesTypeCategory() as $categoryObject):?>
 										<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$this->getGET()['parentCategoryId']) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
-											<?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
+											<?php if ($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
 											<option value="<?=$children->id?>" <?=($children->id==$this->getGET()['parentCategoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
-												<?php if ($children->getChildren() != NULL): foreach($children->getChildren() as $children2):?>
+												<?php if ($children->getChildrenTypeCategory() != NULL): foreach($children->getChildrenTypeCategory() as $children2):?>
 												<option value="<?=$children2->id?>" <?=($children2->id==$this->getGET()['parentCategoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
 												<?php endforeach; endif;?>
 											<?php endforeach; endif;?>
@@ -70,6 +70,7 @@
 						<tr>
 							<th colspan="2" class="first">ID</th>
 							<th>Алиас</th>
+                            <th>Тип</th>
 							<th>Название / Родитель</th>
 							<th>Дата</th>
 							<th>Статус</th>
@@ -80,6 +81,7 @@
 								<td><input type="checkbox" /></td>
 								<td><?=$category->id?></td>
 								<td><p class="alias"><a href="/admin/goods/category/<?=$category->id?>"><?=$category->alias?></a></p></td>
+                                <td><p style="color: <?=$category->getTypeColor()?>"><?=$category->getTypeName()?></p></td>
 								<td><p class="name"><?= $this->isNoop($category->getParent()) ? '<i><font color="grey">Главная</font></i>' : $category->getParent()->name; ?> / <b><?=$category->name?></b> </p></td>
 								<td><p class="date"><?=$category->date?></p></td>
 								<td><p class="status"><font color="<?=$category->getStatus()->color?>"><?=$category->getStatus()->name?></font></p></td>
@@ -92,19 +94,19 @@
 					<?endif?>
 				</div>
 
-				<div class="action_edit">
-					<table>
-						<tr>
-							<td><a href="javascript:" class="check_all"><span>Выделить все</span></a></td>
-							<td>
-								<select>
-									<option>С выделенными</option>
-								</select>
-							</td>
-							<td></td>
-						</tr>
-					</table>
-				</div>
+<!--				<div class="action_edit">-->
+<!--					<table>-->
+<!--						<tr>-->
+<!--							<td><a href="javascript:" class="check_all"><span>Выделить все</span></a></td>-->
+<!--							<td>-->
+<!--								<select>-->
+<!--									<option>С выделенными</option>-->
+<!--								</select>-->
+<!--							</td>-->
+<!--							<td></td>-->
+<!--						</tr>-->
+<!--					</table>-->
+<!--				</div>-->
 			</div>
 		</div><!--main-->
 		<div class="vote"></div>

@@ -32,15 +32,27 @@
 								<td>
 									<select class="filterInput" name="categoryId">
 										<option></option>
-										<?php if ($objects->getMainCategories()->count() != 0): foreach($objects->getMainCategories() as $categoryObject):?>
+										<?if($objects->getMainCategoriesTypeCategory()->count() != 0): foreach($objects->getMainCategoriesTypeCategory() as $categoryObject):?>
 										<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
-											<?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
+
+                                            <?if($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
 											<option value="<?=$children->id?>" <?=($children->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
-												<?php if ($children->getChildren() != NULL): foreach($children->getChildren() as $children2):?>
+
+                                                <?if($children->getChildrenTypeCategory() != NULL): foreach($children->getChildrenTypeCategory() as $children2):?>
 												<option value="<?=$children2->id?>" <?=($children2->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
-												<?php endforeach; endif;?>
-											<?php endforeach; endif;?>
-										<?php endforeach; endif;?>
+												<?endforeach; endif;?>
+
+                                                <?if($children->getChildrenTypeGood() != NULL): foreach($children->getChildrenTypeGood() as $children2):?>
+                                                    <option value="<?=$children2->id?>" <?=($children2->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;<?=$children2->name?></option>
+                                                <?endforeach; endif;?>
+
+											<?endforeach; endif;?>
+
+                                            <?if($categoryObject->getChildrenTypeGood()): foreach($categoryObject->getChildrenTypeGood() as $children):?>
+                                                <option value="<?=$children->id?>" <?=($children->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;--&nbsp;<?=$children->name?></option>
+                                            <?endforeach; endif;?>
+
+										<?endforeach; endif;?>
 									</select>
 								</td>
 								<td class="right">Статус:</td>

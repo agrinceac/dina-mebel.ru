@@ -4,13 +4,14 @@ $(function(){
 
 var initTouchslider = function()
 {
-	$(".touchslider").touchSlider({margin: 0});
+	// $(".touchslider").touchSlider({margin: 0});
 	$('.touchslider-nav-item').live('click', function(){
 		$(this).parents('ul').children('.private').removeClass('private');
 		$(this).parent().addClass('private');
 	});
 
 	$('.bigImage').gallery();
+    $('.smallImage').gallery();
 
 	$('.size').on('click', function(){
 		$('.touchslider-item.current').children('a').click();

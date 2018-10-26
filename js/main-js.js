@@ -1,5 +1,11 @@
 
 $(function(){
+    $('.razdel-block .razdel .category-name.current').parent().next('ul').addClass('active');
+    $('.razdel-block .razdel .category-name.current').parent().parent().next('ul').addClass('active');
+    const leftMenuClassStringToShow = $('.razdel-block .razdel .category-name.current').attr('data-active');
+    console.log(leftMenuClassStringToShow, $(leftMenuClassStringToShow));
+    $(leftMenuClassStringToShow).addClass('active');
+
     $('.button-menu_mobil' ).click(function(){
         $('.menu_mobil').toggleClass('menu-open');
     });
