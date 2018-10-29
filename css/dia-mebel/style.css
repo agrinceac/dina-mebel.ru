@@ -946,22 +946,18 @@ a:active {
 }
 
 .razdel li {
-    line-height: 125%;
-    padding-bottom: 5px;
     list-style: square;
-    padding: 0 12px;
-    height: 27px;
+    padding: 4px 12px;
     line-height: 26px;
-    /*margin-left: 10px;*/
 }
 
 .razdel li.current, .razdel .current {
-    background: url(/images/bg/left_menu.png) no-repeat right top;
+    background: url(/images/bg/left_menu.png) no-repeat center;
     color: #ff612a;
     font-weight: bold;
     padding-top: 3px;
     padding-bottom: 3px;
-    background-size: auto 100%;
+    background-size: 100% 100%;
 }
 
 .razdel li.current a {
@@ -2438,9 +2434,21 @@ div.logo img.logoPic {
 
 .category-name {
     position: relative;
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+    /*overflow: hidden;*/
+    width: 100%;
 }
 
-/*.catalog-accardion_icon {*/
+/*.category-name a {*/
+    /*white-space: nowrap;*/
+/*}*/
+
+.razdel-menu_content li p {
+    display: inline-flex;
+}
+
+    /*.catalog-accardion_icon {*/
     /*background: url(/images/bg/add.svg) no-repeat center; !* nado zamenit put *!*/
     /*background-size: 100% auto;*/
     /*width: 15px;*/
