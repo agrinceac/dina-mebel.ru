@@ -77,9 +77,18 @@ class ParentDecorator extends ModuleDecorator
         $objects = new $className($config);
         if (!empty($statusesArray))
             $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
-        $objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
-                ->setSubquery(' AND `type` = "good"')
-                ->setOrderBy('`priority` ASC');
+
+        $objects->setSubquery(
+                ' AND ( 
+                    ( `parentId` = ?d )
+                    OR
+                    ( `parentId` IN ( SELECT `id` from `'.$this->getParentObject()->mainTable().'` WHERE `parentId` = ?d) )
+                )'
+                , $this->getParentObject()->id, $this->getParentObject()->id
+            )
+            ->setSubquery(' AND `type` = "good"')
+            ->setOrderBy('`priority` ASC');
+
         if($objects->count() == 0)
             return false;
 

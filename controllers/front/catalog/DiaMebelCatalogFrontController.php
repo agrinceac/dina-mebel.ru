@@ -70,7 +70,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 	protected function viewCategory($category)
 	{
 		$this->setTotalLevels($category);
-		$objects = $category->getChildren(array(self::ACTIVE_CATEGORY_STATUS));
+		$objects = $category->getChildrenTypeGood(array(self::ACTIVE_CATEGORY_STATUS));
 
 		if ($category->alias == 'spalni') {
 			$quantityItemsOnSubpageList = 50;
@@ -87,6 +87,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 					->setQuantityItemsOnSubpageList(array($quantityItemsOnSubpageList))
 					->setPager($quantityItemsOnSubpageList);
 		}
+
 		if($objects->getPager()->current()->getCurrentPage() > $objects->getPager()->getTotalPages())
 			return $this->redirect404();
 
@@ -148,10 +149,10 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 		$categories->resetFilters();
 		$categories->setSubquery('AND `parentId` = ?d', $category->getParent()->id)
                 ->setSubquery('AND `parentId` != ?d', 0)
-				->setSubquery('AND `id` != ?d', $category->id)
-				->setSubquery('AND `statusId` = ?d', self::ACTIVE_CATEGORY_STATUS)
-				->setOrderBy('RAND()')
-				->setLimit(self::SIMILAR_CATEGORIES_QUANTITY);
+                ->setSubquery('AND `id` != ?d', $category->id)
+                ->setSubquery('AND `statusId` = ?d', self::ACTIVE_CATEGORY_STATUS)
+                ->setOrderBy('RAND()')
+                ->setLimit(self::SIMILAR_CATEGORIES_QUANTITY);
 
 		return $categories;
 	}
