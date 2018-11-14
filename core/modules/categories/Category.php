@@ -5,10 +5,18 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 	function __construct($objectId, $configObject)
 	{
 		$object = new CategoryObject($objectId, $configObject);
-		$object = new \core\modules\base\ParentDecorator($object, $configObject);
+        $object = new \core\modules\base\ParentDecorator($object, $configObject);
+        $object = new \core\modules\categories\AdditionalParentsDecorator($object);
 		$object = new \core\modules\statuses\StatusDecorator($object);
 		parent::__construct($object);
 	}
+
+    public function edit ($data, $fields = array())
+    {
+        if ( $this->additionalParents->edit($data->additionalParents) )
+            return $this->getParentObject()->edit($data, $fields);
+        return false;
+    }
 
 	public function getH1()
 	{

@@ -31,6 +31,29 @@
 					</td>
 				</tr>
                 <tr>
+                    <td class="first">Дополнительная<br>родительская категория:</td>
+                    <td>
+
+                        <script type="text/javascript" src="/modules/catalog/js/additionalCategories.js"></script>
+                        <script type="text/javascript" src="/admin/js/jquery/multi-select/multi-select.js"></script>
+                        <link rel="stylesheet" type="text/css" href="/admin/js/jquery/multi-select/multi-select.css" />
+
+                        <select name="additionalParents[]" multiple="multiple" class="additionalCategories" style="width:150px;">
+                            <?if($mainCategoriesTypeCategory->count()): foreach($mainCategoriesTypeCategory as $categoryObject):?>
+                                <optgroup label="<?=$categoryObject->name?>">
+                                    <?php if ($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
+                                        <option value="<?=$children->id?>" <?=   isset($object->id)   ?   (in_array($children->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>><?=$children->name?></option>
+                                        <?php if ($children->getChildrenTypeCategory()): foreach($children->getChildrenTypeCategory() as $children2):?>
+                                            <option value="<?=$children2->id?>" <?=   isset($object->id)   ?   (in_array($children->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>>&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
+                                        <?php endforeach; endif;?>
+                                    <?php endforeach; endif;?>
+                                </optgroup>
+                            <?php endforeach; endif;?>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
                     <td class="first">Тип:</td>
                     <td>
                         <select name="type" style="width:150px;">

@@ -1,5 +1,7 @@
 <?php
 namespace core\modules\base;
+use core\modules\categories\AdditionalParentsConfig;
+
 class ParentDecorator extends ModuleDecorator
 {
 	private $parent;
@@ -82,9 +84,11 @@ class ParentDecorator extends ModuleDecorator
                 ' AND ( 
                     ( `parentId` = ?d )
                     OR
-                    ( `parentId` IN ( SELECT `id` from `'.$this->getParentObject()->mainTable().'` WHERE `parentId` = ?d) )
+                    ( `parentId` IN ( SELECT `id` FROM `'.$this->getParentObject()->mainTable().'` WHERE `parentId` = ?d) )
+                    OR
+                    ( `id` IN ( SELECT `ownerId` FROM `'.(new AdditionalParentsConfig())->getTableName().'` WHERE `objectId` = ?d ) )
                 )'
-                , $this->getParentObject()->id, $this->getParentObject()->id
+                , $this->getParentObject()->id, $this->getParentObject()->id, $this->getParentObject()->id
             )
             ->setSubquery(' AND `type` = "good"')
             ->setOrderBy('`priority` ASC');
@@ -94,5 +98,4 @@ class ParentDecorator extends ModuleDecorator
 
         return $objects;
     }
-
 }

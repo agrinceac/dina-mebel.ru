@@ -1,11 +1,13 @@
 <?php
 namespace core\modules\categories;
-class CategoryConfig extends \core\modules\base\ModuleConfig
+use core\modules\base\ModuleConfig;
+
+class CategoryConfig extends ModuleConfig
 {
 	use \core\traits\adapters\Alias,
         \core\traits\adapters\Base;
 
-	private $catalogTypesArray = array(
+    private $catalogTypesArray = array(
 	    'category' => array(
 	        'alias' => 'category',
             'name' => 'категория',
@@ -40,10 +42,21 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 		'metaDescription',
 		'image',
 		'bigImage',
-		'domainAlias',
-        'credit',
-        'type'
+		'domainAlias'
 	);
+
+    public function __construct($parentConfig = null)
+    {
+        if($this->isGoodCategory($parentConfig)){
+            array_push($this->objectFields, 'credit', 'type');
+        }
+        parent::__construct($parentConfig);
+    }
+
+    private function isGoodCategory($parentConfig)
+    {
+        return $parentConfig === 'modules\catalog\goods\lib\GoodConfig';
+    }
 
 	public function rules()
 	{
