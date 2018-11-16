@@ -19,11 +19,11 @@
 			</p>
 			<div class="image">
 				<a href="<?=$viewedCategory->getPath()?>">
-					<img src="<?=$this->getController('Catalog')->getMainGood($id)->getFirstImage()->getImage('230x164')?>" alt="" />
+					<img src="<?=(new \modules\catalog\goods\lib\Goods())->getMainGoodByCategoryId($id)->getFirstImage()->getImage('230x164')?>" alt="" />
 				</a>
 			</div>
 			<p class="more"><a href="<?=$viewedCategory->getPath()?>">подробнее</a></p>
-			<p class="price"><span><?=number_format($this->getController('Catalog')->getMainGood($id)->getPriceByQuantity(1), 0, '.', ' ')?></span> руб.</p>
+			<p class="price"><span><?=number_format((new \modules\catalog\goods\lib\Goods())->getMainGoodByCategoryId($id)->getPriceByQuantity(1), 0, '.', ' ')?></span> руб.</p>
 		</div>
         <?endif?>
 		<?endforeach?>

@@ -1,6 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /shopcart
-Crawl-delay: 1
-Host: dina-mebel.ru
-Sitemap: http://dina-mebel.ru/sitemap.xml
+Disallow: /

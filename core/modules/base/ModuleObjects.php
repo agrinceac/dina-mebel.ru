@@ -345,4 +345,44 @@ abstract class ModuleObjects extends ModuleAbstract implements \Iterator, \Count
 		$this->getObjects();
 		unset($this->objectsList[$offset]);
 	}
+
+    /* Start: Serializable interface Methods */
+    public function serialize()
+    {
+        $data['_moduleConfig'] = $this->_moduleConfig;
+        $data['pager'] = $this->pager;
+        $data['filters'] = $this->filters;
+        $data['quantityItemsOnSubpageList'] = $this->quantityItemsOnSubpageList;
+        $data['_loadWithoutRemovedObjects'] = $this->_loadWithoutRemovedObjects;
+        return serialize($data);
+    }
+
+    public function unserialize($data)
+    {
+        $data = unserialize($data);
+        $this->pager = $data['pager'];
+        $this->filters = $data['filters'];
+        $this->quantityItemsOnSubpageList = $data['quantityItemsOnSubpageList'];
+        $this->_loadWithoutRemovedObjects = $data['_loadWithoutRemovedObjects'];
+        parent::__construct($data['_moduleConfig']);
+    }
+    /* End: Serializable interface Methods */
+
+    public function getIdStringInModuleObjects()
+    {
+        $idsArray = $this->getIdArray();
+        if(empty($idsArray))
+            return false;
+        $ids = '';
+        foreach($idsArray as $item){
+            $id = isset($item['id']) ? $item['id'] : $item['objectId'];
+            $ids .= $id.',';
+        }
+        return substr($ids, 0, strlen($ids)-1);
+    }
+
+    public function getIdArrayInModuleObjects()
+    {
+        return explode(',', $this->getIdStringInModuleObjects());
+    }
 }

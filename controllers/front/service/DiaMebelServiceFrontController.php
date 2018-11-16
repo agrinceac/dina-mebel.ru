@@ -1,5 +1,7 @@
 <?php
 namespace controllers\front\service;
+use modules\catalog\goods\lib\Goods;
+
 class DiaMebelServiceFrontController extends \controllers\base\Controller
 {
 	use	\core\traits\controllers\ControllersHandler,
@@ -125,16 +127,16 @@ class DiaMebelServiceFrontController extends \controllers\base\Controller
 	protected function getYmlOfferFromComplect($complect)
 	{
 		$pictures = array();
-		foreach($this->getController('Catalog')->getMainGood($complect->id)->getImagesByCategoryAndStatus(1, 1) as $image)
+		foreach((new Goods())->getMainGoodByCategoryId($complect->id)->getImagesByCategoryAndStatus(1, 1) as $image)
 			$pictures[] = $image->getImage();
-		foreach($this->getController('Catalog')->getMainGood($complect->id)->getImagesByCategoryAndStatus(2, 1) as $image)
+		foreach((new Goods())->getMainGoodByCategoryId($complect->id)->getImagesByCategoryAndStatus(2, 1) as $image)
 			$pictures[] = $image->getImage();
 
 		$data = array(
 			'id'		=> $complect->id,
 			'available' => $complect->statusId==$this->getController('Catalog')->getActiveCategoryStatus() ? 'true' : 'false',
 			'url'		=> $complect->getPath(),
-			'price'		=> $this->getController('Catalog')->getMainGood($complect->id)->getPriceByQuantity(1),
+			'price'		=> (new Goods())->getMainGoodByCategoryId($complect->id)->getPriceByQuantity(1),
 			'currencyId'=> 'RUR',
 			'categoryId'=> $complect->parentId,
 			'pictures' => $pictures,
@@ -142,7 +144,7 @@ class DiaMebelServiceFrontController extends \controllers\base\Controller
 			'description'=> strip_tags($complect->description),
 			'manufacturerWarranty' => true,
 			'delivery' => true,
-			'deliveryCost' => (int)preg_replace('~\D+~', '', $this->getController('Catalog')->getMainGood($complect->id)->delivery)
+			'deliveryCost' => (int)preg_replace('~\D+~', '', (new Goods())->getMainGoodByCategoryId($complect->id)->delivery)
 		);
 		return new \core\seo\yml\YmlOffer($data);
 	}
@@ -167,7 +169,7 @@ class DiaMebelServiceFrontController extends \controllers\base\Controller
 			'description'=> strip_tags($good->description),
 			'manufacturerWarranty' => true,
 			'delivery' => true,
-			'deliveryCost' => (int)preg_replace('~\D+~', '', $this->getController('Catalog')->getMainGood($good->categoryId)->delivery)
+			'deliveryCost' => (int)preg_replace('~\D+~', '', (new Goods())->getMainGoodByCategoryId($good->categoryId)->delivery)
 		);
 		return new \core\seo\yml\YmlOffer($data);
 	}

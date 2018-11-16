@@ -6,6 +6,9 @@
 	<?if($this->checkUserRight('goods')):?>
 		<a href="/admin/goods/" <?= $this->getREQUEST()['controller']=='goods' ? 'class="underline" ' : ''?>>Товары</a>
 	<?endif?>
+    <?if($this->checkUserRight('goods')):?>
+        <a href="/admin/priority/" <?= $this->getREQUEST()['controller']=='priority' ? 'class="underline" ' : ''?>>Приоритеты</a>
+    <?endif?>
 	<?if($this->checkUserRight('settings')):?>
 		<a href="/admin/settings/" <?= $this->getREQUEST()['controller']=='settings' ? 'class="underline" ' : ''?>>Настройки</a>
 	<?endif?>
