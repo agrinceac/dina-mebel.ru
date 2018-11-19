@@ -7,6 +7,8 @@
 			<div class="right_col">
 				<div class="col_in">
 					<?$this->includeBreadcrumbs()?>
+
+                    <?if($objects && $objects->count()):?>
 					<div class="sort">
 						<div class="col_in">
 							<?= $this->printPager($objects->getPager(), 'pager')?>
@@ -26,6 +28,7 @@
 					</div>
 					<h1 class="page_title"><?= isset($title) ? $title : $category->getH1()?></h1>
 					<div class="clear"></div>
+                    <?endif;?>
 
 					<?if(isset($category)):?>
 					<div class="page content">
@@ -36,7 +39,7 @@
 
 					<div class="catalog2">
 						<div class="catalog2-section">
-							<?if($objects->count()):?>
+                            <?if($objects && $objects->count()):?>
 							 <? $iteration=1; foreach($objects as $object):?>
 							<?$this->getController('Catalog')->getCatalogObjectTemplateBlock($object, $iteration)?>
 							<? $iteration++; endforeach?>
@@ -48,11 +51,15 @@
 							<?endif?>
 						</div>
 					</div>
+
+                    <?if($objects && $objects->count()):?>
 					<div class="sort">
 						<div class="col_in">
 							<?= $this->printPager($objects->getPager(), 'pager')?>
 						</div>
 					</div>
+                    <?endif?>
+
 			</div>
 
 			<?if(isset($category)):?>

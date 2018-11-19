@@ -87,7 +87,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
                 $quantityItemsOnSubpageList = 15;
             }
 
-            if ( $objects->count() > 0 ) {
+            if($objects && $objects->count() > 0){
                 $objectsCount = $objects->count();
                 $objects->setSubquery('AND `statusId` NOT IN (?s)', implode(',', $this->getExludedStatusesArray()))
                         ->setSubquery('AND `id` IN (SELECT DISTINCT `categoryId` FROM `tbl_catalog_goods` 
@@ -95,13 +95,15 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
                         )
                         ->setQuantityItemsOnSubpageList(array($quantityItemsOnSubpageList))
                         ->setPager($quantityItemsOnSubpageList);
+
+                if($objects->getPager()->current()->getCurrentPage() > $objects->getPager()->getTotalPages())
+                    return $this->redirect404();
+
+                $objects = (new Priority())->order('categoriesOnCategoryPage', $objects);
+                Snatcher::getInstance()->setObjectIdsToSession('categoriesOnCategoryPage', $objects);
             }
-
-            if($objects->getPager()->current()->getCurrentPage() > $objects->getPager()->getTotalPages())
-                return $this->redirect404();
-
-            $objects = (new Priority())->order('categoriesOnCategoryPage', $objects);
-            Snatcher::getInstance()->setObjectIdsToSession('categoriesOnCategoryPage', $objects);
+            else
+                $objectsCount = 0;
 
             $this->setMetaFromObject($category)
                 ->setContent('category', $category)
@@ -281,7 +283,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 
 		$this->setLevel('Поиск');
 		$objects = $this->getGoodsObject()->getCategories();
-		if ( $objects->count() > 0 ) {
+		if ($objects && $objects->count() > 0) {
 			$objects->resetFilters();
 			$objects->setSubquery('AND (`description` LIKE \'%?s%\'  OR  `name` LIKE \'%?s%\' )', trim($this->getGET()['query']), trim($this->getGET()['query']))
 					->setSubquery('AND `parentId` != ?d', 0)
