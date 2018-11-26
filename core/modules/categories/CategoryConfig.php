@@ -47,15 +47,12 @@ class CategoryConfig extends ModuleConfig
 
     public function __construct($parentConfig = null)
     {
-        if($this->isGoodCategory($parentConfig)){
-            array_push($this->objectFields, 'credit', 'type');
-        }
-        parent::__construct($parentConfig);
-    }
+        if(isset($_REQUEST['type']))
+            array_push($this->objectFields, 'type');
+        if(isset($_REQUEST['credit']))
+            array_push($this->objectFields, 'credit');
 
-    private function isGoodCategory($parentConfig)
-    {
-        return $parentConfig === 'modules\catalog\goods\lib\GoodConfig';
+        parent::__construct($parentConfig);
     }
 
 	public function rules()
