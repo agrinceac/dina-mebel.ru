@@ -11,6 +11,8 @@
 		<?foreach($_SESSION['recentViewedCategories'] as $id=>$alias):?>
         <?$viewedCategory = $this->getController('Catalog')->getCategoryByAlias($alias);?>
         <?if($viewedCategory):?>
+        <?$mainGood = (new \modules\catalog\goods\lib\Goods())->getMainGoodByCategoryId($id);?>
+        <?if(is_object($mainGood)  &&  get_class($mainGood)=='modules\catalog\goods\lib\Good'):?>
 		<div class="tovar">
 			<p class="name">
 				<a href="<?=$viewedCategory->getPath()?>">
@@ -19,12 +21,18 @@
 			</p>
 			<div class="image">
 				<a href="<?=$viewedCategory->getPath()?>">
-					<img src="<?=(new \modules\catalog\goods\lib\Goods())->getMainGoodByCategoryId($id)->getFirstImage()->getImage('230x164')?>" alt="" />
+					<img src="<?=$mainGood->getFirstImage()->getImage('230x164')?>" alt="" />
 				</a>
 			</div>
 			<p class="more"><a href="<?=$viewedCategory->getPath()?>">подробнее</a></p>
-			<p class="price"><span><?=number_format((new \modules\catalog\goods\lib\Goods())->getMainGoodByCategoryId($id)->getPriceByQuantity(1), 0, '.', ' ')?></span> руб.</p>
+			<p class="price">
+                <span>
+                    <?=number_format($mainGood->getPriceByQuantity(1), 0, '.', ' ')?>
+                </span>
+                руб.
+            </p>
 		</div>
+        <?endif?>
         <?endif?>
 		<?endforeach?>
 	</div>
