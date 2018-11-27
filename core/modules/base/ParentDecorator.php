@@ -43,9 +43,14 @@ class ParentDecorator extends ModuleDecorator
 		if (!empty($statusesArray))
 			$objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
 		$objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
-				->setOrderBy('`priority` ASC');
+                ->setOrderBy('ABS(name), name asc');
+
 		if($objects->count() == 0)
 		    return false;
+
+//		foreach ($objects as $object)
+//		    var_dump($object->name);
+//		die();
 		
 		return $objects;
 	}
@@ -62,7 +67,8 @@ class ParentDecorator extends ModuleDecorator
             $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
         $objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
                 ->setSubquery(' AND `type` = "category"')
-                ->setOrderBy('`priority` ASC');
+                ->setOrderBy('ABS(name), name asc');
+
         if($objects->count() == 0)
             return false;
 
@@ -91,7 +97,7 @@ class ParentDecorator extends ModuleDecorator
                 , $this->getParentObject()->id, $this->getParentObject()->id, $this->getParentObject()->id
             )
             ->setSubquery(' AND `type` = "good"')
-            ->setOrderBy('`priority` ASC');
+            ->setOrderBy('ABS(name), name asc');
 
         if($objects->count() == 0)
             return false;
