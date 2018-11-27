@@ -30,7 +30,11 @@ class SelectionDataSource
             'slyderGoodsOnIndexPage' => array(
                 'title' => 'Слайдер на главной',
                 'objectConfig' => 'modules\catalog\goods\lib\GoodConfig'
-            )
+            ),
+            'goodsOnCategoryPage' => array(
+                'title' => 'Товары на стр. категории',
+                'objectConfig' => 'modules\catalog\goods\lib\GoodConfig'
+            ),
         )
     );
 

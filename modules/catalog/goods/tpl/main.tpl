@@ -120,9 +120,6 @@
 														</td>
 													</tr>
 
-
-
-                                                    <!--
                                                     <script type="text/javascript" src="/modules/catalog/js/additionalCategories.js"></script>
                                                     <script type="text/javascript" src="/admin/js/jquery/multi-select/multi-select.js"></script>
                                                     <link rel="stylesheet" type="text/css" href="/admin/js/jquery/multi-select/multi-select.css" />
@@ -144,7 +141,7 @@
                                                             </select>
                                                         </td>
                                                     </tr>
-                                                    -->
+
 
 
 

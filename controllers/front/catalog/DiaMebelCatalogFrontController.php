@@ -121,15 +121,32 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 
 	protected function viewFinalCategory($category)
 	{
-		$this->setTotalLevels($category);
-		$this->setResentViewedCategories($category);
+        $cacheKey = md5($this->getCurrentDomainAlias().'-'.__METHOD__.serialize($this->getREQUEST()->getArray()));
+        $contents = Cacher::getInstance()->get($cacheKey);
 
-		$this->setMetaFromObject($category)
-			->setContent('mainGood', (new Goods())->getMainGoodByCategoryId($category->id))
-			->setContent('objects', $this->getGoodsByCategory($category))
-			->setContent('category', $category)
-			->setContent('similarNotMainCategories', $this->getSimilarNotMainCategories($category))
-			->includeTemplate('catalog/catalogObject');
+        if ($contents === false || Snatcher::getInstance()->isTouchUrlAttempt()){
+            ob_start();
+
+            $this->setTotalLevels($category);
+            $this->setResentViewedCategories($category);
+
+            $objects = $this->getGoodsByCategory($category);
+
+            $objects = (new Priority())->order('goodsOnCategoryPage', $objects);
+            Snatcher::getInstance()->setObjectIdsToSession('goodsOnCategoryPage', $objects);
+
+            $this->setMetaFromObject($category)
+                ->setContent('mainGood', (new Goods())->getMainGoodByCategoryId($category->id))
+                ->setContent('objects', $objects)
+                ->setContent('category', $category)
+                ->setContent('similarNotMainCategories', $this->getSimilarNotMainCategories($category))
+                ->includeTemplate('catalog/catalogObject');
+
+            $contents = ob_get_contents();
+            ob_end_clean();
+            Cacher::getInstance()->set($contents, $cacheKey);
+        }
+        echo $contents;
 	}
 
 	protected function getGoodsByCategory($category)

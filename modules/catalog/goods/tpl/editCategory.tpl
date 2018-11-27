@@ -18,7 +18,7 @@
 					<td>
 						<select name="parentId" style="width:150px;">
 							<option></option>
-							<?php if ($mainCategoriesTypeCategory->count()): foreach($mainCategories as $categoryObject):?>
+							<?php if ($mainCategoriesTypeCategory->count()): foreach($mainCategoriesTypeCategory as $categoryObject):?>
 							<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$object->parentId) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
 								<?php if ($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
 								<option value="<?=$children->id?>" <?=($children->id==$object->parentId) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
@@ -33,10 +33,13 @@
                 <tr>
                     <td class="first">Дополнительная<br>родительская категория:</td>
                     <td>
-
                         <script type="text/javascript" src="/modules/catalog/js/additionalCategories.js"></script>
                         <script type="text/javascript" src="/admin/js/jquery/multi-select/multi-select.js"></script>
                         <link rel="stylesheet" type="text/css" href="/admin/js/jquery/multi-select/multi-select.css" />
+
+                        <!--
+                        <option value="<?=$categoryObject->id?>" <?=   isset($categoryObject->id)   ?   (in_array($categoryObject->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>><?=$categoryObject->name?></option>
+                        -->
 
                         <select name="additionalParents[]" multiple="multiple" class="additionalCategories" style="width:150px;">
                             <?if($mainCategoriesTypeCategory->count()): foreach($mainCategoriesTypeCategory as $categoryObject):?>
