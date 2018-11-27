@@ -303,7 +303,8 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 		$objects = $this->getGoodsObject()->getCategories();
 		if ($objects && $objects->count() > 0) {
 			$objects->resetFilters();
-			$objects->setSubquery('AND (`description` LIKE \'%?s%\'  OR  `name` LIKE \'%?s%\' )', trim($this->getGET()['query']), trim($this->getGET()['query']))
+			$objects->setSubquery('AND `type` = \'?s\'', 'good')
+                    ->setSubquery('AND (`description` LIKE \'%?s%\'  OR  `name` LIKE \'%?s%\' )', trim($this->getGET()['query']), trim($this->getGET()['query']))
 					->setSubquery('AND `parentId` != ?d', 0)
 					->setSubquery('AND `statusId` NOT IN (?s)', implode(',', $this->getExludedStatusesArray()));
 		}
