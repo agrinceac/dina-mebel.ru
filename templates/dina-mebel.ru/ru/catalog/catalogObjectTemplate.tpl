@@ -1,3 +1,4 @@
+<?if(is_object($good)  &&  get_class($good)=='modules\catalog\goods\lib\Good'):?>
 <div class="cat_in <?= $iteration%2==0 ? 'f_right' : 'f_left'?>" itemscope itemtype="http://schema.org/Product">
 	<div class="image">
 
@@ -58,3 +59,5 @@
 </div>
 <?if($iteration%2==0):?>
 <?endif?>
+<?endif?>
+

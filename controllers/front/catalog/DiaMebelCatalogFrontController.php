@@ -185,6 +185,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 		$categories->resetFilters();
 		$categories->setSubquery('AND `parentId` = ?d', $category->getParent()->id)
                 ->setSubquery('AND `parentId` != ?d', 0)
+                ->setSubquery('AND `type` = \'?s\'', 'good')
                 ->setSubquery('AND `id` != ?d', $category->id)
                 ->setSubquery('AND `statusId` = ?d', self::ACTIVE_CATEGORY_STATUS)
                 ->setOrderBy('RAND()')
