@@ -125,7 +125,7 @@ class Good extends \modules\catalog\CatalogGood implements \interfaces\IObjectTo
 	/* Start: Sitemap Methods */
 	public function getLastUpdateTime()
 	{
-		return $this->lastUpdateTime;
+        return empty($this->lastUpdateTime) ? time() : $this->lastUpdateTime;
 	}
 
 	public function getSitemapPriority()
