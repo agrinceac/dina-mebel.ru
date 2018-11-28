@@ -169,7 +169,7 @@
 													<tr>
 														<td class="first">Посл. обновление:</td>
 														<td>
-															<input class="date" name="lastUpdateTime" title="Время последнего обновления" value="<?= \core\utils\Dates::toSimpleDate( \core\utils\Dates::dateTimeToTimestamp($object->getLastUpdateTime()) )?>"/>
+                                                            <input class="date" name="lastUpdateTime" title="Время последнего обновления" value="<?= \core\utils\Dates::toSimpleDate($object->getLastUpdateTime())?>"/>
 														</td>
 													</tr>
 													<tr>

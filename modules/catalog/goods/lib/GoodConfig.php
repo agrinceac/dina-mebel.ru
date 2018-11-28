@@ -103,7 +103,7 @@ class GoodConfig extends \core\modules\base\ModuleConfig
 	{
 		return array(
 			'date' => array('_outDate'),
-			'lastUpdateTime' => array('_outDateTime'),
+//			'lastUpdateTime' => array('_outDateTime'),
 		);
 	}
 }
