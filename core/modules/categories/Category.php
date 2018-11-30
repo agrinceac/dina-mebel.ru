@@ -51,8 +51,17 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 	/* Start: URL Methods */
 	public function getPath()
 	{
-		$categoryRules = new CategoriesAliasesRules;
-		return $categoryRules->useRules($this->getParentObject()->getPath());
+        $object = $this->getParentObject();
+
+        if($object->type === 'good'){
+            $object = $object->getParent()->getParent();
+            return $object->getPath().$this->alias.'/';
+        }
+
+        return $object->getPath();
+
+//		$categoryRules = new CategoriesAliasesRules;
+//		return $categoryRules->useRules($this->getParentObject()->getPath());
 	}
 	/*   End: URL Methods */
 

@@ -1,5 +1,6 @@
 <?php
 namespace core\modules\categories;
+use core\db\Db;
 use core\modules\base\ModuleConfig;
 
 class CategoryConfig extends ModuleConfig
@@ -47,12 +48,11 @@ class CategoryConfig extends ModuleConfig
 
     public function __construct($parentConfig = null)
     {
-        if(isset($_REQUEST['type']))
-            array_push($this->objectFields, 'type');
-        if(isset($_REQUEST['credit']))
-            array_push($this->objectFields, 'credit');
-
         parent::__construct($parentConfig);
+
+        foreach(array('type', 'credit') as $field)
+            if(Db::getMysql()->fieldExists($this->table, $field))
+                array_push($this->objectFields, $field);
     }
 
 	public function rules()

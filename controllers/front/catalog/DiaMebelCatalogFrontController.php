@@ -53,6 +53,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 	{
 		$alias = $this->getLastElementFromRequest();
 		$category = $this->getCategoryByAlias($alias);
+
 		if ($category){
 			if ($this->checkObjectPath($category)){
 				if($category->getChildren(array(1)))
@@ -62,6 +63,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 			}
 
 		}
+
 		$this->getController('Article')->defaultAction();
 	}
 
