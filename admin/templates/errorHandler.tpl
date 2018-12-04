@@ -92,7 +92,7 @@
 		<div>
 			<i>Please visit this site in 15 minutes</i>
 		</div>
-		<? if ( isset($this->config['exceptionView']) ): ?>
+<!--		--><?// if ( isset($this->config['exceptionView']) ): ?>
 			<table class="noBorders">
 				<tr>
 					<td>
@@ -212,6 +212,6 @@
 					</td>
 				</tr>
 			</table>
-		<? endif; ?>
+<!--		--><?// endif; ?>
 	</body>
 </html>

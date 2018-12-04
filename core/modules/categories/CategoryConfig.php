@@ -1,9 +1,25 @@
 <?php
 namespace core\modules\categories;
-class CategoryConfig extends \core\modules\base\ModuleConfig
+use core\db\Db;
+use core\modules\base\ModuleConfig;
+
+class CategoryConfig extends ModuleConfig
 {
 	use \core\traits\adapters\Alias,
         \core\traits\adapters\Base;
+
+    private $catalogTypesArray = array(
+	    'category' => array(
+	        'alias' => 'category',
+            'name' => 'категория',
+            'color' => 'blue'
+        ),
+        'good' => array(
+            'alias' => 'good',
+            'name' => 'товар',
+            'color' => 'green'
+        )
+    );
 
 	protected $objectClass = '\core\modules\categories\Category';
 	protected $objectsClass = '\core\modules\categories\Categories';
@@ -27,9 +43,17 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 		'metaDescription',
 		'image',
 		'bigImage',
-		'domainAlias',
-        'credit'
+		'domainAlias'
 	);
+
+    public function __construct($parentConfig = null)
+    {
+        parent::__construct($parentConfig);
+
+        foreach(array('type', 'credit') as $field)
+            if(Db::getMysql()->fieldExists($this->table, $field))
+                array_push($this->objectFields, $field);
+    }
 
 	public function rules()
 	{
@@ -83,4 +107,9 @@ class CategoryConfig extends \core\modules\base\ModuleConfig
 	{
 		$this->data[$key] = (!empty($this->data[$key])) ? \core\utils\Dates::convertDate($this->data[$key], 'mysql') : time() ;
 	}
+
+	public function getCatalogTypesArray()
+    {
+        return $this->catalogTypesArray;
+    }
 }

@@ -7,7 +7,7 @@
 			<div class="right_col">
 				<div class="col_in" itemscope itemtype="http://schema.org/Article">
 					<?$this->includeBreadcrumbs()?>
-					<h1 itemprop="name"><?=$article->getH1()?></h1>
+					<h1 class="page_title" itemprop="name"><?=$article->getH1()?></h1>
 					<div class="page content" itemprop="description">
 						<?=$article->text?>
 					</div>

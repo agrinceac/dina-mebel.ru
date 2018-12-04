@@ -18,11 +18,11 @@
 					<td>
 						<select name="parentId" style="width:150px;">
 							<option></option>
-							<?php if ($mainCategories->count()): foreach($mainCategories as $categoryObject):?>
+							<?php if ($mainCategoriesTypeCategory->count()): foreach($mainCategoriesTypeCategory as $categoryObject):?>
 							<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$object->parentId) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
-								<?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
+								<?php if ($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
 								<option value="<?=$children->id?>" <?=($children->id==$object->parentId) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
-									<?php if ($children->getChildren()): foreach($children->getChildren() as $children2):?>
+									<?php if ($children->getChildrenTypeCategory()): foreach($children->getChildrenTypeCategory() as $children2):?>
 									<option value="<?=$children2->id?>" <?=($children2->id==$object->parentId) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
 									<?php endforeach; endif;?>
 								<?php endforeach; endif;?>
@@ -30,6 +30,42 @@
 						</select>
 					</td>
 				</tr>
+                <tr>
+                    <td class="first">Дополнительная<br>родительская категория:</td>
+                    <td>
+                        <script type="text/javascript" src="/modules/catalog/js/additionalCategories.js"></script>
+                        <script type="text/javascript" src="/admin/js/jquery/multi-select/multi-select.js"></script>
+                        <link rel="stylesheet" type="text/css" href="/admin/js/jquery/multi-select/multi-select.css" />
+
+                        <!--
+                        <option value="<?=$categoryObject->id?>" <?=   isset($categoryObject->id)   ?   (in_array($categoryObject->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>><?=$categoryObject->name?></option>
+                        -->
+
+                        <select name="additionalParents[]" multiple="multiple" class="additionalCategories" style="width:150px;">
+                            <?if($mainCategoriesTypeCategory->count()): foreach($mainCategoriesTypeCategory as $categoryObject):?>
+                                <optgroup label="<?=$categoryObject->name?>">
+                                    <?php if ($categoryObject->getChildrenTypeCategory()): foreach($categoryObject->getChildrenTypeCategory() as $children):?>
+                                        <option value="<?=$children->id?>" <?=   isset($object->id)   ?   (in_array($children->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>><?=$children->name?></option>
+                                        <?php if ($children->getChildrenTypeCategory()): foreach($children->getChildrenTypeCategory() as $children2):?>
+                                            <option value="<?=$children2->id?>" <?=   isset($object->id)   ?   (in_array($children->id, $object->additionalParentsArray)) ? 'selected' : ''   :    '' ?>>&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
+                                        <?php endforeach; endif;?>
+                                    <?php endforeach; endif;?>
+                                </optgroup>
+                            <?php endforeach; endif;?>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="first">Тип:</td>
+                    <td>
+                        <select name="type" style="width:150px;">
+                            <?foreach((new \core\modules\categories\CategoryConfig())->getCatalogTypesArray() as $type):?>
+                            <option value="<?=$type['alias']?>" <?= $object->type==$type['alias'] ? 'selected' : ''?>><?=$type['name']?></option>
+                            <?endforeach;?>
+                        </select>
+                    </td>
+                </tr>
                 <?if($object->parentId):?>
                 <tr>
                     <td class="first">Доступен кредит:</td>
@@ -40,12 +76,10 @@
 					<td class="first">Описание:</td>
 					<td><textarea name="description" cols="95" rows="10"><?=$object->description?></textarea>
 				</tr>
-
 				<tr>
 					<td class="first">Текст:</td>
 					<td><textarea name="text" cols="95" rows="10"><?=$object->text?></textarea>
 				</tr>
-
 				<tr>
 					<td colspan="2"><p class="title">Мета данные:</p></td>
 				</tr>

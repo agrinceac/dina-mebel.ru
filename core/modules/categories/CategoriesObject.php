@@ -8,5 +8,4 @@ class CategoriesObject extends \core\modules\base\ModuleObjects
 	{
 		parent::__construct(new $this->configClass($configObject));
 	}
-	
 }

@@ -1,5 +1,7 @@
 <?php
 namespace core\modules\base;
+use core\modules\categories\AdditionalParentsConfig;
+
 class ParentDecorator extends ModuleDecorator
 {
 	private $parent;
@@ -41,11 +43,65 @@ class ParentDecorator extends ModuleDecorator
 		if (!empty($statusesArray))
 			$objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
 		$objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
-				->setOrderBy('`priority` ASC');
+                ->setOrderBy('ABS(name), name asc');
+
 		if($objects->count() == 0)
 		    return false;
+
+//		foreach ($objects as $object)
+//		    var_dump($object->name);
+//		die();
 		
 		return $objects;
-	}	
+	}
 
+    public function getChildrenTypeCategory($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $config = clone $this->getConfig();
+        $config->removePostfix();
+        $className = $config->getObjectsClass();
+        $objects = new $className($config);
+        if (!empty($statusesArray))
+            $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+        $objects->setSubquery(' AND `parentId`= ?d',$this->getParentObject()->id)
+                ->setSubquery(' AND `type` = "category"')
+                ->setOrderBy('ABS(name), name asc');
+
+        if($objects->count() == 0)
+            return false;
+
+        return $objects;
+    }
+
+    public function getChildrenTypeGood($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $config = clone $this->getConfig();
+        $config->removePostfix();
+        $className = $config->getObjectsClass();
+        $objects = new $className($config);
+        if (!empty($statusesArray))
+            $objects->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+
+        $objects->setSubquery(
+                ' AND ( 
+                    ( `parentId` = ?d )
+                    OR
+                    ( `parentId` IN ( SELECT `id` FROM `'.$this->getParentObject()->mainTable().'` WHERE `parentId` = ?d) )
+                    OR
+                    ( `id` IN ( SELECT `ownerId` FROM `'.(new AdditionalParentsConfig())->getTableName().'` WHERE `objectId` = ?d ) )
+                )'
+                , $this->getParentObject()->id, $this->getParentObject()->id, $this->getParentObject()->id
+            )
+            ->setSubquery(' AND `type` = "good"')
+            ->setOrderBy('ABS(name), name asc');
+
+        if($objects->count() == 0)
+            return false;
+
+        return $objects;
+    }
 }

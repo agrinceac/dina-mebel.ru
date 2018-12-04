@@ -52,6 +52,9 @@ class Db
 		}
 
 		$this->query = $query;
+
+//		var_dump( $query );
+
 		$result = mysql_query($query,self::$db) or $this->errorAction();
 		self::$query_count++;
 		return $result;
@@ -224,5 +227,21 @@ class Db
 		return $maxId + 1;
 	}
 
+	public function fieldExists($table, $field)
+    {
+        if(!$this->tableExists($table))
+            return false;
+        return in_array($field, $this->getTableFields($table));
+    }
+
+    private function tableExists($table)
+    {
+        $res = $this->rows('SHOW TABLES FROM '.$this->database);
+
+        foreach($res as $data)
+            if($data[0] === $table)
+                return true;
+
+        return false;
+    }
 }
-?>

@@ -19,4 +19,13 @@ class Goods extends \core\modules\base\ModuleDecorator implements \Countable
 		return $this->getParentObject()->count();
 	}
 	/* End: Countable Methods */
+
+    public function getMainGoodByCategoryId($categoryId)
+    {
+        $this->resetFilters();
+        $this->setSubquery('AND `categoryId` =  ?d ', $categoryId)
+            ->setOrderBy('`priority` ASC, `id` ASC')
+            ->setLimit(1);
+        return $this->current();
+    }
 }

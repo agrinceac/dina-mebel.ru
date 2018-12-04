@@ -5,10 +5,18 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 	function __construct($objectId, $configObject)
 	{
 		$object = new CategoryObject($objectId, $configObject);
-		$object = new \core\modules\base\ParentDecorator($object, $configObject);
+        $object = new \core\modules\base\ParentDecorator($object, $configObject);
+        $object = new \core\modules\categories\AdditionalParentsDecorator($object);
 		$object = new \core\modules\statuses\StatusDecorator($object);
 		parent::__construct($object);
 	}
+
+    public function edit ($data, $fields = array())
+    {
+        if ( $this->additionalParents->edit($data->additionalParents) )
+            return $this->getParentObject()->edit($data, $fields);
+        return false;
+    }
 
 	public function getH1()
 	{
@@ -43,8 +51,20 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 	/* Start: URL Methods */
 	public function getPath()
 	{
-		$categoryRules = new CategoriesAliasesRules;
-		return $categoryRules->useRules($this->getParentObject()->getPath());
+        $object = $this->getParentObject();
+
+        if($object->type === 'good'){
+            $object = $object->getParent()->getParent();
+            if($this->isNotNoop($object))
+                return $object->getPath().$this->alias.'/';
+            else
+                $object = $this->getParentObject();
+        }
+
+        return $object->getPath();
+
+//		$categoryRules = new CategoriesAliasesRules;
+//		return $categoryRules->useRules($this->getParentObject()->getPath());
 	}
 	/*   End: URL Methods */
 
@@ -64,4 +84,19 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 		return 'daily';
 	}
 	/*   End: Sitemap Methods */
+
+	public function getTypeAlias()
+    {
+        return $this->type;
+    }
+
+    public function getTypeName()
+    {
+        return (new CategoryConfig())->getCatalogTypesArray()[$this->type]['name'];
+    }
+
+    public function getTypeColor()
+    {
+        return (new CategoryConfig())->getCatalogTypesArray()[$this->type]['color'];
+    }
 }

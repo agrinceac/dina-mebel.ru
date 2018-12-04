@@ -7,7 +7,7 @@
 			<div class="right_col">
 				<div class="col_in">
 					<?$this->includeBreadcrumbs()?>
-					<h1><?=$article->getH1()?></h1>
+					<h1 class="page_title"><?=$article->getH1()?></h1>
 					<div class="reviews">
 						<?if($articles): foreach($articles as $article):?>
 						<div class="review">

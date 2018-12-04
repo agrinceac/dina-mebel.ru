@@ -7,9 +7,9 @@
 			<div class="right_col">
 				<div class="col_in" itemscope itemtype="http://schema.org/Product">
 					<?$this->includeBreadcrumbs()?>
-					<h1 itemprop="name"><?=$category->getH1()?></h1>
+					<h1 class="page_title" itemprop="name"><?=$category->getH1()?></h1>
 					<div class="product">
-						<div class="right_product">
+						<div class="right_product right_product-block">
 							<div class="col_in">
 								<div class="garantia">
 									<p><img src="/images/bg/garant.png" alt=""></p>
@@ -62,53 +62,44 @@
 							<div class="col_in">
 								<div class="product_image">
 									<div class="caption">
-										<table>
+										<table class="caption-table">
 											<tbody>
-												<tr>
-													<td><p><strong>Цена полного комплекта:</strong></p></td>
-													<td><p class="price"><span><?=number_format($mainGood->getPriceByQuantity(1), 0, '.', ' ')?></span> руб</p></td>
+												<tr class="caption-table-tr">
+													<td class="caption-table-td"><p><strong>Цена полного комплекта:</strong></p></td>
+													<td class="caption-table-td caption-table-price"><p class="price"><span><?=number_format($mainGood->getPriceByQuantity(1), 0, '.', ' ')?></span> руб</p></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 
 
-                                    <script type="text/javascript" src="/admin/js/jquery/touch/touchslider.js"></script>
+
+									<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+									<script type="text/javascript" src="/js/carusel.js"></script>
                                     <script type="text/javascript" src="/js/plugins/gallery/gallery.js"></script>
                                     <script type="text/javascript" src="/js/catalog/catalogObject.js"></script>
 
 
                                     <div class="big-photo">
-                                        <a class="pointer size"></a>
-                                        <ul>
-                                            <li>
-                                                <div class="img-offers touchslider" title="<?=$mainGood->getName()?>">
-                                                    <?$images = $mainGood->getImagesByCategoryAndStatus('1,2', 1);?>
-                                                    <div class="touchslider-viewport"><div>
-                                                            <? foreach($images as $image ): ?>
-                                                                <div class="touchslider-item">
-                                                                    <a data-href="<?=$image->getFocusImage('0x0')?>" class="bigImage">
-                                                                        <img src="<?=$image->getFocusImage('563x423')?>">
-                                                                    </a>
-                                                                </div>
-                                                            <? endforeach; ?>
-                                                        </div></div>
-                                                    <?if($images->count()):?>
-                                                        <a class="touchslider-prev bt-lf" title="следующее изображение"></a>
-                                                        <a class="touchslider-next bt-rg" title="предыдущее изображение"></a>
-                                                    <?endif?>
-                                                </div>
-                                            </li>
+										<ul class="img-big-ul">
+											<?$images = $mainGood->getImagesByCategoryAndStatus('1,2', 1);?>
+											<? foreach($images as $image ): ?>
+												<li>
+													<a data-fancybox="gallery" data-href="<?=$image->getFocusImage('0x0')?>" class="bigImage">
+														<img class="img-big-ul__image" src="<?=$image->getFocusImage('563x423')?>">
+													</a>
+												</li>
+											<? endforeach; ?>
                                         </ul>
                                     </div>
                                     <div class="mini-photo">
                                         <div class="hidden-photo">
                                             <div class="touchslider-nav">
-                                                <ul>
+												<ul class="img-min-ul">
                                                     <? $count=2; foreach($mainGood->getImagesByCategoryAndStatus('1,2', 1) as $image ): ?>
                                                     <li>
                                                         <a class="touchslider-nav-item <?=(1==$count++)?' touchslider-nav-item-current':''?>" >
-                                                            <img src="<?=$image->getFocusImage('121x64')?>" style="width: 121px; height: 64px;" alt="">
+                                                            <img class="img-min-ul__image" src="<?=$image->getFocusImage('121x64')?>" style="width: 121px; height: 64px;" alt="">
                                                         </a>
                                                     </li>
                                                     <? endforeach; ?>
@@ -126,16 +117,20 @@
 								</div>
 								<?$mainGood->IncrementViewsCount()?>
 								<?$mainGood->SetStars();?>
+
+
 								<div class="share">
 									<table width="100%">
-										<tbody><tr>
-											<td class="iconsTd">
-												<p class="iconsP">Поделиться с друзьями:</p>
-												<div class="share42init"></div>
-												<script type="text/javascript" src="/templates/<?=core\url\UrlDecoder::getInstance()->getDomainAlias().'/'.$this->getREQUEST()['lang']?>/share42/share42.js"></script>
-											</td>
-										</tr>
-									</tbody></table>
+										<tbody>
+											<tr>
+												<td class="iconsTd">
+													<p class="iconsP">Поделиться с друзьями:</p>
+													<div class="share42init"></div>
+													<script type="text/javascript" src="/templates/<?=core\url\UrlDecoder::getInstance()->getDomainAlias().'/'.$this->getREQUEST()['lang']?>/share42/share42.js"></script>
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 								<div class="pay">
 									<div class="relative">
@@ -146,7 +141,7 @@
 											<div class="title"><a class="close pointer">закрыть</a> <span>Обратный звонок</span></div>
 											<div class="pop_in">
 												<form action="/order/sendOrderByOneClick/" method="post" class="orderByOneClick">
-													<table align="center">
+													<table align="center" class="call-modal">
 														<tbody>
 															<tr>
 																<td align="center"><img src="/images/bg/20.png" alt=""></td>
@@ -175,31 +170,49 @@
 										<!--</noindex>-->
 									</div>
 									<table width="100%">
-										<tbody><tr>
-											<td>
-												<a class="buy addToShopcart pointer" data-objectId="<?=$mainGood->id?>" data-objectClass="<?=$mainGood->getClass()?>" data-quantity="1">
-													&nbsp; Купить
-												</a>
-											</td>
-											<td><a class="buy buy2 orderOneClickModalShow pointer" data-objectId="<?=$mainGood->id?>"><img src="/images/bg/cart2.png" alt=""> &nbsp; Купить в один клик</a></td>
-											<?if($category->credit):?>
-                                            <td>
-												<a class="buy addToShopcart pointer" data-objectId="<?=$mainGood->id?>" data-objectClass="<?=$mainGood->getClass()?>" data-quantity="1">
-													&nbsp; Купить в кредит
-												</a>
-											</td>
-                                            <?endif?>
-											<? if ($mainGood->instagramImgLink):?>
-                                                <td>
-                                                <a href="<?=$mainGood->instagramImgLink?>" target="_blank" class="link instalink">
-                                                    <img src="/images/bg/inst.png" alt="">
-                                                </a>
-                                                <p></p>
+										<tbody>
+											<tr class="btn-table__tr">
+												<td>
+													<a class="buy addToShopcart pointer"
+                                                       data-objectId="<?=$mainGood->id?>"
+                                                       data-objectClass="<?=$mainGood->getClass()?>"
+                                                       data-quantity="1"
+                                                    >
+														&nbsp; Купить
+													</a>
+												</td>
+												<td>
+                                                    <a class="buy buy2 orderOneClickModalShow pointer"
+                                                       data-objectId="<?=$mainGood->id?>"><img src="/images/bg/cart2.png" alt=""
+                                                    >
+                                                        &nbsp; Купить в один клик
+                                                    </a>
                                                 </td>
-                                            <?endif?>
-											<!--<td align="right"><a href="#" class="link"><img src="/images/bg/tag.png" alt=""> Подобрать матрас</a><p></p></td>-->
-										</tr>
-									</tbody></table>
+
+                                                <?if($category->credit):?>
+												<td>
+													<a class="buy addToShopcart pointer"
+                                                       data-objectId="<?=$mainGood->id?>"
+                                                       data-objectClass="<?=$mainGood->getClass()?>"
+                                                       data-quantity="1"
+                                                    >
+														&nbsp; Купить в кредит
+													</a>
+												</td>
+												<?endif?>
+
+												<? if ($mainGood->instagramImgLink):?>
+													<td>
+													<a href="<?=$mainGood->instagramImgLink?>" target="_blank" class="link instalink">
+														<img src="/images/bg/inst.png" alt="">
+													</a>
+													<p></p>
+													</td>
+												<?endif?>
+
+											</tr>
+										</tbody>
+									</table>
 									<? if ($mainGood->instagramImgLink): ?>
 									<div class="instaCaption">
 										<p>Посмотреть больше фото</p>
@@ -225,17 +238,20 @@
 						<?if($objects->count()): foreach($objects as $object):?>
 						<div class="preview">
 							<div class="image">
-								<a href="<?=$object->getFirstImage()->getImage()?>" rel="iLoad">
+								<a href="<?=$object->getFirstImage()->getImage()?>"
+                                   data-fancybox="gallery"
+                                   class="smallImage"
+                                >
 									<span class="zoom"></span>
 									<img src="<?=$object->getFirstImage()->getImage('245x184')?>" alt="" />
 								</a>
 							</div>
 							<div class="text">
-								<p class="name"><?=$object->getName()?></p>
+								<p class="name name__center"><?=$object->getName()?></p>
 								<div class="priced">
 									<table width="100%">
 										<tbody>
-											<tr>
+											<tr class="priced-table__tr">
 												<?if($object->getPriceByQuantity(1) !=1 ):?>
 												<td width="180">
 													<p class="price"><span><?=number_format($object->getPriceByQuantity(1), 0, '.', ' ')?></span> руб</p>
@@ -270,9 +286,11 @@
 					<?if($similarNotMainCategories->count()):?>
 					<div class="catalog2">
 						<p class="title">Возможно вас заинтересует:</p>
-                        <?$iteration=1; foreach($similarNotMainCategories as $category):?>
-                        <?$this->getController('Catalog')->getCatalogObjectTemplateBlock($category, $iteration)?>
-                        <?$iteration++; endforeach?>
+						<div class="catalog2-section">
+							<?$iteration=1; foreach($similarNotMainCategories as $category):?>
+							<?$this->getController('Catalog')->getCatalogObjectTemplateBlock($category, $iteration)?>
+							<?$iteration++; endforeach?>
+						</div>
 					</div>
 					<?endif?>
 					<div class="clear"></div>

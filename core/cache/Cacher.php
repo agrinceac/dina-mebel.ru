@@ -7,10 +7,6 @@ class Cacher
 	protected $enginesPool = array();
 	protected $config      = array();
 	
-	private $_currentEngine;
-	private $_defaultEngine;
-	private $_defaultEngineFlag;
-	
 	protected function __construct(){
 		$this->loadConfig();
 	}
@@ -27,47 +23,48 @@ class Cacher
 		return self::$instance;
 	}
 	
+	/**
+     * Get cache engine object
+     *
+     * @return \core\cache\ICacheEngine Instance cache engine
+	 * 
+     */
 	public static function getInstance($engine = null)
 	{
 		$cacher = self::init();
-		if ($engine){
-			$cacher->setEngine($engine);
+		if ($cacher->isEnable()){
+			$engineName = empty($engine)
+				? $cacher->getDefaultEngineName()
+				: (string)$engine;
 		} else {
-			$cacher->setDefaultEngine();
+			$engineName = 'Noop';
 		}
-		return $cacher;
+		return $cacher->getEngine($engineName);
 	}
 	
-	private function setEngine($engine)
+	public function isEnable()
 	{
-		$this->_currentEngine     = (string)$engine;
-		$this->_defaultEngineFlag = false;
-		return $this;
+		return !!$this->config['config']['enable'];
 	}
 	
-	private function getCurrentEngine()
+	public function getEngine($engineName)
 	{
-		if (!$this->checkEngineInPool())
-			$this->instanceCurrentEngine();
-		return $this->enginesPool[$this->_currentEngine];
+		if (!$this->checkEngineInPool($engineName))
+			$this->instanceEngineToPool($engineName);
+		return $this->enginesPool[$engineName];
 	}
 	
-	private function checkEngineInPool()
+	private function checkEngineInPool($engineName)
 	{
-		return is_object($this->enginesPool[$this->_currentEngine]);
+		return isset($this->enginesPool[$engineName]);
 	}
 	
-	private function instanceCurrentEngine()
-	{
-		return $this->instanceEngine($this->_currentEngine);
-	}
-	
-	private function instanceEngine($engineName)
+	private function instanceEngineToPool($engineName)
 	{
 		$class = '\\core\\cache\\engines\\'.$engineName;
 		if ($this->checkEngineClass($class)) {
 			$this->enginesPool[$engineName] = new $class();
-			return this;
+			return true;
 		}
 		throw new Exception('Unknown cache engine "'.$engineName.'" in class '.get_class($this).'!');
 	}
@@ -77,32 +74,8 @@ class Cacher
 		return class_exists($class, true);
 	}
 	
-	private function setDefaultEngine()
+	private function getDefaultEngineName()
 	{
-		$this->config['engines'] = ksort($this->config['engines']);
-		$config = current(reset($this->config['engines']));
-		$this->_currentEngine = $config['name'];
-		$this->_defaultEngineFlag = true;
-		return $this;
-	}
-	
-	public function setCache($data, $key, $category)
-	{
-		
-	}
-	
-	public function getCache($key, $category)
-	{
-		
-	}
-	
-	public function removeCache($category, $key = null)
-	{
-		
-	}
-	
-	public function resetCache()
-	{
-		
+		return $this->config['config']['defaultEngine'];
 	}
 }

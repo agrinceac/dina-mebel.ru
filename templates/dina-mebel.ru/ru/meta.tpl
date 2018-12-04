@@ -22,10 +22,15 @@
 	<?
 	$css = $this->getController('imploder')->css();
 	$css->add('style.css', '/css/dia-mebel/')
+		->add('adaptive.css', '/css/dia-mebel/')
 		->add('errors.css', '/admin/js/base/actions/styles/');
 	$css->printf('compact');
 	?>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 	<!-- End: CSS files -->
+
 
 	<!-- Start: JS scripts -->
 	<script type="text/javascript">
@@ -44,6 +49,7 @@
 	$js->add('jquery.js')
 		->add('slides.js')
 //		->add('iLoad.js', '/js/')
+		->add('main-js.js', '/js/')
 		->add('loader.class.js','/admin/js/base/actions/')
 		->add('form.class.js','/admin/js/base/actions/')
 		->add('feedbackHandler.js','/js/feedback/')

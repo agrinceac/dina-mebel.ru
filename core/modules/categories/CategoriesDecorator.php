@@ -28,10 +28,38 @@ class CategoriesDecorator extends \core\modules\base\ModuleDecorator
 			$this->mainCategories = new Categories($this->getParentObject());
 			$this->mainCategories->setSubquery('AND `parentId`=?d', 0)
 							->setOrderBy('`priority` ASC');
-			if(isset($statusId))
+			if(!empty($statusesArray))
 				$this->mainCategories->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
 	    }
 
 	    return $this->mainCategories;
 	}
+
+    public function getMainCategoriesTypeCategory($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $categories = new Categories($this->getParentObject());
+        $categories->setSubquery('AND `parentId`=?d', 0)
+                ->setSubquery(' AND `type` = "category"')
+                ->setOrderBy('`priority` ASC');
+        if(!empty($statusesArray))
+            $categories->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+
+        return $categories;
+    }
+
+    public function getMainCategoriesTypeGood($statusesArray = array())
+    {
+        if (!is_array($statusesArray))
+            $statusesArray = array((int)$statusesArray);
+        $categories = new Categories($this->getParentObject());
+        $categories->setSubquery('AND `parentId`=?d', 0)
+            ->setSubquery(' AND `type` = "good"')
+            ->setOrderBy('`priority` ASC');
+        if(!empty($statusesArray))
+            $categories->setSubquery(' AND `statusId` IN (?s)',  implode(',', $statusesArray));
+
+        return $categories;
+    }
 }

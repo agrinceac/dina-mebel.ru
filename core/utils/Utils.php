@@ -85,5 +85,116 @@ class Utils
     {
         return strtok($url, '?');
     }
+
+    public static function declension($int, $expr){
+        settype($int, "integer");
+        $count = $int % 100;
+        if ($count >= 5 && $count <= 20) {
+            $result = $expr['2'];
+        } else {
+            $count = $count % 10;
+            if ($count == 1) {
+                $result = $expr['0'];
+            } elseif ($count >= 2 && $count <= 4) {
+                $result = $expr['1'];
+            } else {
+                $result = $expr['2'];
+            }
+        }
+        return $result;
+    }
+
+    public function textSlice($smallerText, $biggerText){
+        return substr($biggerText, sizeof($smallerText), sizeof($biggerText));
+    }
+
+    public static function ragp($url) { // remove all GET-parameters from URL
+        return preg_replace('/^([^?]+)(\?.*?)?(#.*)?$/', '$1$3', $url);
+    }
+
+    public static function sgp($url, $varname, $value) // substitute get parameter
+    {
+        $url = strpos($url, '?') ? $url : $url.'?';
+        if (is_array($varname)) {
+            foreach ($varname as $i => $n) {
+                $v = (is_array($value))
+                    ? ( isset($value[$i]) ? $value[$i] : NULL )
+                    : $value;
+                $url = sgp($url, $n, $v);
+            }
+            return $url;
+        }
+
+        preg_match('/^([^?]+)(\?.*?)?(#.*)?$/', $url, $matches);
+        $gp = (isset($matches[2])) ? $matches[2] : ''; // GET-parameters
+        if (!$gp) return $url;
+
+        $pattern = "/([?&])$varname=.*?(?=&|#|\z)/";
+        if (preg_match($pattern, $gp)) {
+            $substitution = ($value !== '') ? "\${1}$varname=" . preg_quote($value) : '';
+            $newgp = preg_replace($pattern, $substitution, $gp); // new GET-parameters
+            $newgp = preg_replace('/^&/', '?', $newgp);
+        }
+        else    {
+            $s = ($gp) ? '&' : '?';
+            $newgp = $gp.$s.$varname.'='.$value;
+        }
+
+        $anchor = (isset($matches[3])) ? $matches[3] : '';
+        $newurl = $matches[1].$newgp.$anchor;
+        return $newurl;
+    }
+
+    public static function rgp($url, $param)	// remove get parameter
+    {
+        $url = preg_replace('/(&|\?)'.preg_quote($param).'=[^&]*$/', '', $url);
+        $url = preg_replace('/(&|\?)'.preg_quote($param).'=[^&]*&/', '$1', $url);
+        return $url;
+    }
+
+    public static function getCountableObjectPropertiesString($objects, $property)
+    {
+        if(is_array($objects)){
+            if(empty($objects))
+                return '';
+        }
+        if(is_object($objects)){
+            if(!$objects->count())
+                return '';
+        }
+        $string = '';
+        foreach($objects as $object){
+            if(is_array($object))
+                $string .= $object[$property].',';
+            if(is_object($object))
+                $string .= $object->$property.',';
+        }
+        return substr($string, 0, strlen($string)-1);
+    }
+
+    public static function getFirstArrayEl($array)
+    {
+        if(!is_array($array))
+            throw new \Exception('Argument should be array in '.__CLASS__);
+        foreach ($array as $el)
+            return $el;
+        return false;
+    }
+
+    public static function getConstructorParameters($className)
+    {
+        $reflector = new \ReflectionClass($className);
+        if (! $reflector->isInstantiable())
+            return [];
+        $parameters = [];
+        foreach ($reflector->getConstructor()->getParameters() as $param)
+            $parameters[] = $param->getName();
+        return $parameters;
+    }
+
+    public static function isConstructorParameter($className, $parameter)
+    {
+        return in_array($parameter, self::getConstructorParameters($className));
+    }
 }
 ?>

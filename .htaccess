@@ -9,6 +9,8 @@ RewriteCond %{REQUEST_FILENAME} !/admin/captcha.php
 
 RewriteRule !\.(js|ico|css|png)$ %{DOCUMENT_ROOT}/admin/index.php [L]
 
+RewriteCond %{REQUEST_FILENAME} !/vendor/phpMemcachedAdmin/(.*)
+RewriteCond %{REQUEST_FILENAME} !/vendor/xhprof/xhprof_html/(.*)
 RewriteCond %{REQUEST_FILENAME} !/admin/(.*)
 RewriteCond %{REQUEST_FILENAME} !/chat/(.*)
 RewriteCond %{REQUEST_FILENAME} !/files/(.*)
