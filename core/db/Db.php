@@ -236,7 +236,7 @@ class Db
 
     private function tableExists($table)
     {
-        $res = $this->rows('SHOW TABLES FROM '.$this->database);
+        $res = $this->rows('SHOW TABLES FROM `'.$this->database.'`');
 
         foreach($res as $data)
             if($data[0] === $table)
