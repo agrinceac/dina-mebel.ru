@@ -55,7 +55,10 @@ class Category extends \core\modules\base\ModuleDecorator implements \interfaces
 
         if($object->type === 'good'){
             $object = $object->getParent()->getParent();
-            return $object->getPath().$this->alias.'/';
+            if($this->isNotNoop($object))
+                return $object->getPath().$this->alias.'/';
+            else
+                $object = $this->getParentObject();
         }
 
         return $object->getPath();
