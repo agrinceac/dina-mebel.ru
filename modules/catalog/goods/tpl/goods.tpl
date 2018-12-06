@@ -111,9 +111,10 @@
 								<td><input type="checkbox" class="groupElements" /></td>
 								<td><?=++$counter;?></td>
 								<td>
-									<a href="<?=$object->getFirstImage()->getImage('800x600')?>" class="lightbox noNextPrev">
-										<img src="<?=$object->getFirstImage()->getImage('40x40')?>" />
-									</a>
+                                    <?$image = $this->isNoop($object->getFirstImage()) ? $object->getFirstPrimaryImage() : $object->getFirstImage();?>
+                                    <a href="<?=$image->getImage('800x600')?>" class="lightbox noNextPrev">
+                                        <img src="<?=$image->getImage('40x40')?>" />
+                                    </a>
 								</td>
 								<td><?=$object->id?></td>
 								<td><p class="name"><b><?=$object->getName()?></b> (<?=$object->alias?>)</p></td>
