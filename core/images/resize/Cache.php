@@ -3,6 +3,7 @@ namespace core\images\resize;
 class Cache
 {
     const CACHE_DIR = '/cache';
+    const IMAGES_CACHE_DIR = '/images';
 
     protected function getCacheImageBaseUrl($imagesUrl)
     {
@@ -58,7 +59,9 @@ class Cache
 
     public function clearAll()
     {
-        $this->_deleteDir(DIR . self::CACHE_DIR);
+        if(!file_exists(DIR . self::CACHE_DIR . self::IMAGES_CACHE_DIR))
+            return true;
+        return $this->_deleteDir(DIR . self::CACHE_DIR . self::IMAGES_CACHE_DIR);
     }
 
     protected function _deleteDir($dir)
@@ -76,7 +79,7 @@ class Cache
         }
         closedir($handle);
         if($dir != DIR . self::CACHE_DIR) {
-             rmdir($dir);
+             return rmdir($dir);
         }
     }
 
