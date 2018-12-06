@@ -279,8 +279,7 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 
             $objects = $this->getGoodsObject();
             $objects->resetFilters();
-            $objects->setSubquery('AND `statusId` NOT IN (?s)', implode(',', $this->getExludedStatusesArray()))
-                    ->setSubquery('AND `slyder` = ?d', 1);
+            $objects->setSubquery('AND `slyder` = ?d', 1);
 
             $objects = (new Priority())->order('slyderGoodsOnIndexPage', $objects);
             Snatcher::getInstance()->setObjectIdsToSession('slyderGoodsOnIndexPage', $objects);

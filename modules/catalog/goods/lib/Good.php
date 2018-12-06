@@ -1,5 +1,7 @@
 <?php
 namespace modules\catalog\goods\lib;
+use core\utils\Utils;
+
 class Good extends \modules\catalog\CatalogGood implements \interfaces\IObjectToFrontend, \interfaces\IGoodForShopcart
 {
 	use \core\traits\RequestHandler;
@@ -191,4 +193,21 @@ class Good extends \modules\catalog\CatalogGood implements \interfaces\IObjectTo
 	{
 		$this->stars = $this->GetStarsByViews();
 	}
+
+	public function isSlyderTextNone()
+    {
+        return trim($this->slyderText) === 'none';
+    }
+
+    public function isSlyderTextHref()
+    {
+        $start = '<a href="/';
+        $end = '></a>';
+        return Utils::startsWith(trim($this->slyderText), $start) && Utils::endsWith(trim($this->slyderText), $end);
+    }
+
+    public function isSlyderTextEmpty()
+    {
+        return empty($this->slyderText);
+    }
 }
