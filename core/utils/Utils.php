@@ -196,5 +196,29 @@ class Utils
     {
         return in_array($parameter, self::getConstructorParameters($className));
     }
+
+    public static function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+
+    public static function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0)
+            return true;
+        return (substr($haystack, -$length) === $needle);
+    }
+
+    /**
+     * @param $string in format <a href="/someUrl/">something</a>
+     * @return mixed
+     */
+    public static function extractHrefValue($string)
+    {
+        preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $string, $matches);
+        return $matches[2][0];
+    }
 }
 ?>

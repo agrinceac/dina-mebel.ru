@@ -6,12 +6,12 @@ trait Templates
 
 	protected function includeTemplate($tplName)
 	{
-		// define content variables
 		if ($this->content)
 			foreach ($this->content as $key => $value)
 				$$key = $value;
 
-		include $this->getTemplate($tplName) ;
+		include $this->getTemplate($tplName);
+		return $this;
 	}
 
 	protected function getTemplate($tplName)
@@ -49,4 +49,10 @@ trait Templates
 		$this->content[$varName] = $content;
 		return $this;
 	}
+
+	protected function unsetContent($varName)
+    {
+        $this->content[$varName] = null;
+        return $this;
+    }
 }
