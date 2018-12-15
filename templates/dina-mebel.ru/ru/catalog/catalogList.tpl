@@ -11,7 +11,7 @@
                     <?if($objects && $objects->count()):?>
 					<div class="sort">
 						<div class="col_in">
-							<?= $this->printPager($objects->getPager(), 'pager')?>
+							<?//= $this->printPager($objects->getPager(), 'pager')?>
 <!--							<div class="sort_item">
 								<p><a href="#" class="srt">с начала новые ▼</a></p>
 								<div class="white"></div>
@@ -55,7 +55,7 @@
                     <?if($objects && $objects->count()):?>
 					<div class="sort">
 						<div class="col_in">
-							<?= $this->printPager($objects->getPager(), 'pager')?>
+							<?//= $this->printPager($objects->getPager(), 'pager')?>
 						</div>
 					</div>
                     <?endif?>

@@ -83,11 +83,13 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
             $this->setTotalLevels($category);
             $objects = $category->getChildrenTypeGood(array(self::ACTIVE_CATEGORY_STATUS));
 
-            if ($category->alias == 'spalni') {
-                $quantityItemsOnSubpageList = 48;
-            } else {
-                $quantityItemsOnSubpageList = 15;
-            }
+//            if ($category->alias == 'spalni') {
+//                $quantityItemsOnSubpageList = 48;
+//            } else {
+//                $quantityItemsOnSubpageList = 15;
+//            }
+
+            $quantityItemsOnSubpageList = 20000;
 
             if($objects && $objects->count() > 0){
                 $objectsCount = $objects->count();
