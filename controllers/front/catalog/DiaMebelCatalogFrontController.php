@@ -89,7 +89,31 @@ class DiaMebelCatalogFrontController extends \controllers\base\Controller
 //                $quantityItemsOnSubpageList = 15;
 //            }
 
+
+
+
+
+
+
+
+
+
+//            TODO:
             $quantityItemsOnSubpageList = 20000;
+//            in admin temlate:
+//            учитывать пагинацию checkbox
+//            1, 2, 3 ... select в ряду
+
+
+
+
+
+
+
+
+
+            
+
 
             if($objects && $objects->count() > 0){
                 $objectsCount = $objects->count();
