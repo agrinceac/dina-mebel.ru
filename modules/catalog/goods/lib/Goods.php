@@ -1,5 +1,7 @@
 <?php
 namespace modules\catalog\goods\lib;
+use core\modules\categories\AdditionalCategoriesConfig;
+
 class Goods extends \core\modules\base\ModuleDecorator implements \Countable
 {
 	use \modules\catalog\traits\filterCategoryAlias;
@@ -23,7 +25,15 @@ class Goods extends \core\modules\base\ModuleDecorator implements \Countable
     public function getMainGoodByCategoryId($categoryId)
     {
         $this->resetFilters();
-        $this->setSubquery('AND `categoryId` =  ?d ', $categoryId)
+        $this->setSubquery('AND 
+                (   `categoryId` =  ?d 
+                        OR
+                    `id` IN (SELECT `ownerId` FROM 
+                    `'.$this->getObjectConfig()->mainTable().(new AdditionalCategoriesConfig())->getTablePostfix().'`
+                     WHERE `objectId` = ?d)
+                )'
+            , $categoryId, $categoryId
+        )
             ->setOrderBy('`priority` ASC, `id` ASC')
             ->setLimit(1);
         return $this->current();
